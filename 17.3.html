@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Python Expert Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Python Expert Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What is the primary purpose of __slots__?</h3>
+        <label><input type="radio" name="q1" value="a"> Enable multiple inheritance</label>
+        <label><input type="radio" name="q1" value="b"> Optimize memory usage</label>
+        <label><input type="radio" name="q1" value="c"> Prevent method overriding</label>
+        <label><input type="radio" name="q1" value="d"> Enable operator overloading</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. What does the GIL primarily affect?</h3>
+        <label><input type="radio" name="q2" value="a"> Memory management</label>
+        <label><input type="radio" name="q2" value="b"> CPU-bound threads</label>
+        <label><input type="radio" name="q2" value="c"> I/O operations</label>
+        <label><input type="radio" name="q2" value="d"> Garbage collection</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. How to implement a context manager without @contextlib?</h3>
+        <label><input type="radio" name="q3" value="a"> __enter__/__exit__ methods</label>
+        <label><input type="radio" name="q3" value="b"> __init__/__del__</label>
+        <label><input type="radio" name="q3" value="c"> __call__ method</label>
+        <label><input type="radio" name="q3" value="d"> __with__ method</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. What's the difference between __str__ and __repr__?</h3>
+        <label><input type="radio" name="q4" value="a"> __str__ is informal, __repr__ is unambiguous</label>
+        <label><input type="radio" name="q4" value="b"> __str__ is for developers, __repr__ for users</label>
+        <label><input type="radio" name="q4" value="c"> __repr__ is only for numbers</label>
+        <label><input type="radio" name="q4" value="d"> They are interchangeable</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. What does Python's MRO determine?</h3>
+        <label><input type="radio" name="q5" value="a"> Memory allocation order</label>
+        <label><input type="radio" name="q5" value="b"> Method resolution in multiple inheritance</label>
+        <label><input type="radio" name="q5" value="c"> Module import order</label>
+        <label><input type="radio" name="q5" value="d"> Garbage collection sequence</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. How to create a weak reference to an object?</h3>
+        <label><input type="radio" name="q6" value="a"> weakref.ref()</label>
+        <label><input type="radio" name="q6" value="b"> sys.getweakref()</label>
+        <label><input type="radio" name="q6" value="c"> obj.weakref()</label>
+        <label><input type="radio" name="q6" value="d"> reference() built-in</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. What's the effect of using *args in function definitions?</h3>
+        <label><input type="radio" name="q7" value="a"> Enforces keyword-only arguments</label>
+        <label><input type="radio" name="q7" value="b"> Captures extra positional arguments</label>
+        <label><input type="radio" name="q7" value="c"> Unpacks iterable arguments</label>
+        <label><input type="radio" name="q7" value="d"> Requires type annotations</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. What is the purpose of descriptors?</h3>
+        <label><input type="radio" name="q8" value="a"> Manage file descriptors</label>
+        <label><input type="radio" name="q8" value="b"> Control attribute access</label>
+        <label><input type="radio" name="q8" value="c"> Handle exceptions</label>
+        <label><input type="radio" name="q8" value="d"> Manage database connections</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. How to implement coroutines in Python?</h3>
+        <label><input type="radio" name="q9" value="a"> async/await syntax</label>
+        <label><input type="radio" name="q9" value="b"> yield expressions</label>
+        <label><input type="radio" name="q9" value="c"> Both a and b</label>
+        <label><input type="radio" name="q9" value="d"> multiprocessing module</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. What's the most efficient way to check membership in a large collection?</h3>
+        <label><input type="radio" name="q10" value="a"> List</label>
+        <label><input type="radio" name="q10" value="b"> Tuple</label>
+        <label><input type="radio" name="q10" value="c"> Set</label>
+        <label><input type="radio" name="q10" value="d"> Dictionary keys</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['b', 'b', 'a', 'a', 'b', 'a', 'b', 'b', 'c', 'c'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

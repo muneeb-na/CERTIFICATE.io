@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Full Stack Web Development Intermediate Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Full Stack Web Development Intermediate Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. Which of the following is NOT a standard HTTP method in RESTful APIs?</h3>
+        <label><input type="radio" name="q1" value="a"> GET</label>
+        <label><input type="radio" name="q1" value="b"> POST</label>
+        <label><input type="radio" name="q1" value="c"> UPDATE</label>
+        <label><input type="radio" name="q1" value="d"> PATCH</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. What is the correct order of components in the CSS Box Model from innermost to outermost?</h3>
+        <label><input type="radio" name="q2" value="a"> Content → Padding → Border → Margin</label>
+        <label><input type="radio" name="q2" value="b"> Padding → Content → Border → Margin</label>
+        <label><input type="radio" name="q2" value="c"> Border → Content → Padding → Margin</label>
+        <label><input type="radio" name="q2" value="d"> Margin → Border → Padding → Content</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. In React, which hook is used to manage state in functional components?</h3>
+        <label><input type="radio" name="q3" value="a"> useState</label>
+        <label><input type="radio" name="q3" value="b"> useEffect</label>
+        <label><input type="radio" name="q3" value="c"> useReducer</label>
+        <label><input type="radio" name="q3" value="d"> useContext</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. What is the difference between `require()` and `import` in JavaScript?</h3>
+        <label><input type="radio" name="q4" value="a"> `require()` is CommonJS while `import` is ES6</label>
+        <label><input type="radio" name="q4" value="b"> `import` is CommonJS while `require()` is ES6</label>
+        <label><input type="radio" name="q4" value="c"> Both are ES6 modules syntax</label>
+        <label><input type="radio" name="q4" value="d"> Both are CommonJS syntax</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. Which SQL JOIN returns all rows from the left table even if there are no matches in the right table?</h3>
+        <label><input type="radio" name="q5" value="a"> LEFT JOIN</label>
+        <label><input type="radio" name="q5" value="b"> INNER JOIN</label>
+        <label><input type="radio" name="q5" value="c"> RIGHT JOIN</label>
+        <label><input type="radio" name="q5" value="d"> FULL OUTER JOIN</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. What does HTTP status code 404 indicate?</h3>
+        <label><input type="radio" name="q6" value="a"> Not Found</label>
+        <label><input type="radio" name="q6" value="b"> Unauthorized</label>
+        <label><input type="radio" name="q6" value="c"> Internal Server Error</label>
+        <label><input type="radio" name="q6" value="d"> Bad Request</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. In Express.js, what is middleware?</h3>
+        <label><input type="radio" name="q7" value="a"> Functions that have access to req, res, and next</label>
+        <label><input type="radio" name="q7" value="b"> Database connection handlers</label>
+        <label><input type="radio" name="q7" value="c"> Error handling classes</label>
+        <label><input type="radio" name="q7" value="d"> Template engines</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. When is the React componentDidMount lifecycle method called?</h3>
+        <label><input type="radio" name="q8" value="a"> Before component rendering</label>
+        <label><input type="radio" name="q8" value="b"> After component is mounted</label>
+        <label><input type="radio" name="q8" value="c"> When props are updated</label>
+        <label><input type="radio" name="q8" value="d"> During component unmounting</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. Which type of database is MongoDB?</h3>
+        <label><input type="radio" name="q9" value="a"> Relational</label>
+        <label><input type="radio" name="q9" value="b"> Document-based</label>
+        <label><input type="radio" name="q9" value="c"> Graph</label>
+        <label><input type="radio" name="q9" value="d"> Key-Value</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. In CSS Flexbox, which property controls alignment along the main axis?</h3>
+        <label><input type="radio" name="q10" value="a"> justify-content</label>
+        <label><input type="radio" name="q10" value="b"> align-items</label>
+        <label><input type="radio" name="q10" value="c"> flex-direction</label>
+        <label><input type="radio" name="q10" value="d"> flex-wrap</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['c', 'a', 'a', 'a', 'a', 'a', 'a', 'b', 'b', 'a'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

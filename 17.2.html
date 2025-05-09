@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Machine Learning Intermediate Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Machine Learning Intermediate Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What is the primary purpose of cross-validation?</h3>
+        <label><input type="radio" name="q1" value="a"> Increase model complexity</label>
+        <label><input type="radio" name="q1" value="b"> Assess model generalizability</label>
+        <label><input type="radio" name="q1" value="c"> Reduce training time</label>
+        <label><input type="radio" name="q1" value="d"> Handle missing data</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. Which metric is most important for imbalanced classes?</h3>
+        <label><input type="radio" name="q2" value="a"> Accuracy</label>
+        <label><input type="radio" name="q2" value="b"> F1 Score</label>
+        <label><input type="radio" name="q2" value="c"> MAE</label>
+        <label><input type="radio" name="q2" value="d"> R-squared</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. What differentiates L1 and L2 regularization?</h3>
+        <label><input type="radio" name="q3" value="a"> L1 adds absolute coefficients, L2 adds squared</label>
+        <label><input type="radio" name="q3" value="b"> L1 handles outliers better</label>
+        <label><input type="radio" name="q3" value="c"> L2 performs feature selection</label>
+        <label><input type="radio" name="q3" value="d"> They are identical</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. Why use Random Forest over Decision Trees?</h3>
+        <label><input type="radio" name="q4" value="a"> Reduce overfitting</label>
+        <label><input type="radio" name="q4" value="b"> Faster training</label>
+        <label><input type="radio" name="q4" value="c"> Handle categorical data</label>
+        <label><input type="radio" name="q4" value="d"> Better visualization</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. What does Grid Search optimize?</h3>
+        <label><input type="radio" name="q5" value="a"> Feature selection</label>
+        <label><input type="radio" name="q5" value="b"> Hyperparameters</label>
+        <label><input type="radio" name="q5" value="c"> Data preprocessing</label>
+        <label><input type="radio" name="q5" value="d"> Model deployment</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. Why use ReLU in neural networks?</h3>
+        <label><input type="radio" name="q6" value="a"> Handle non-linearity</label>
+        <label><input type="radio" name="q6" value="b"> Reduce vanishing gradient</label>
+        <label><input type="radio" name="q6" value="c"> Both a and b</label>
+        <label><input type="radio" name="q6" value="d"> Normalize outputs</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. What indicates high bias in a model?</h3>
+        <label><input type="radio" name="q7" value="a"> Low training error</label>
+        <label><input type="radio" name="q7" value="b"> High training error</label>
+        <label><input type="radio" name="q7" value="c"> High variance</label>
+        <label><input type="radio" name="q7" value="d"> Perfect test accuracy</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. What does PCA primarily achieve?</h3>
+        <label><input type="radio" name="q8" value="a"> Increase model complexity</label>
+        <label><input type="radio" name="q8" value="b"> Reduce dimensionality</label>
+        <label><input type="radio" name="q8" value="c"> Handle missing values</label>
+        <label><input type="radio" name="q8" value="d"> Balance datasets</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. What's true about gradient descent?</h3>
+        <label><input type="radio" name="q9" value="a"> Always finds global minimum</label>
+        <label><input type="radio" name="q9" value="b"> Requires convex loss function</label>
+        <label><input type="radio" name="q9" value="c"> Learning rate affects convergence</label>
+        <label><input type="radio" name="q9" value="d"> Only for neural networks</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. What's SMOTE used for?</h3>
+        <label><input type="radio" name="q10" value="a"> Feature engineering</label>
+        <label><input type="radio" name="q10" value="b"> Handling imbalanced data</label>
+        <label><input type="radio" name="q10" value="c"> Regularization</label>
+        <label><input type="radio" name="q10" value="d"> Model interpretation</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['b', 'b', 'a', 'a', 'b', 'c', 'b', 'b', 'c', 'b'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

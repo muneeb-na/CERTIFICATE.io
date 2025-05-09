@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Expert Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>AI Expert Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What is the key innovation in transformer architectures?</h3>
+        <label><input type="radio" name="q1" value="a"> Convolutional layers</label>
+        <label><input type="radio" name="q1" value="b"> Self-attention mechanism</label>
+        <label><input type="radio" name="q1" value="c"> Backpropagation</label>
+        <label><input type="radio" name="q1" value="d"> Pooling operations</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. What does the "no free lunch" theorem imply in ML?</h3>
+        <label><input type="radio" name="q2" value="a"> All algorithms perform equally</label>
+        <label><input type="radio" name="q2" value="b"> No single algorithm works best for all problems</label>
+        <label><input type="radio" name="q2" value="c"> Training should be free</label>
+        <label><input type="radio" name="q2" value="d"> Open-source models are superior</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. What's the primary challenge in multi-agent reinforcement learning?</h3>
+        <label><input type="radio" name="q3" value="a"> Non-stationary environment</label>
+        <label><input type="radio" name="q3" value="b"> Single reward function</label>
+        <label><input type="radio" name="q3" value="c"> Limited action space</label>
+        <label><input type="radio" name="q3" value="d"> Deterministic transitions</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. How does DALL-E 2 achieve text-to-image generation?</h3>
+        <label><input type="radio" name="q4" value="a"> Diffusion models with CLIP guidance</label>
+        <label><input type="radio" name="q4" value="b"> Variational autoencoders</label>
+        <label><input type="radio" name="q4" value="c"> Markov chain Monte Carlo</label>
+        <label><input type="radio" name="q4" value="d"> Reinforcement learning</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. What is the primary limitation of current LLMs?</h3>
+        <label><input type="radio" name="q5" value="a"> Lack of factual grounding</label>
+        <label><input type="radio" name="q5" value="b"> Limited vocabulary</label>
+        <label><input type="radio" name="q5" value="c"> Slow inference</label>
+        <label><input type="radio" name="q5" value="d"> Small context window</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. What's the key innovation in AlphaFold 2?</h3>
+        <label><input type="radio" name="q6" value="a"> Evolutionary scale modeling</label>
+        <label><input type="radio" name="q6" value="b"> Attention-based architecture</label>
+        <label><input type="radio" name="q6" value="c"> Quantum computing</label>
+        <label><input type="radio" name="q6" value="d"> Reinforcement learning</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. What does "catastrophic forgetting" refer to in continual learning?</h3>
+        <label><input type="radio" name="q7" value="a"> Model instability</label>
+        <label><input type="radio" name="q7" value="b"> Loss of previous knowledge</label>
+        <label><input type="radio" name="q7" value="c"> Hardware failure</label>
+        <label><input type="radio" name="q7" value="d"> Data corruption</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. What's the main technical hurdle in quantum machine learning?</h3>
+        <label><input type="radio" name="q8" value="a"> Qubit stability</label>
+        <label><input type="radio" name="q8" value="b"> Algorithm design</label>
+        <label><input type="radio" name="q8" value="c"> Data encoding</label>
+        <label><input type="radio" name="q8" value="d"> All of the above</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. What is "model collapse" in generative AI?</h3>
+        <label><input type="radio" name="q9" value="a"> Degradation when trained on synthetic data</label>
+        <label><input type="radio" name="q9" value="b"> Hardware overheating</label>
+        <label><input type="radio" name="q9" value="c"> Training divergence</label>
+        <label><input type="radio" name="q9" value="d"> Memory leaks</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. What breakthrough enabled ChatGPT's conversational ability?</h3>
+        <label><input type="radio" name="q10" value="a"> RLHF (Reinforcement Learning from Human Feedback)</label>
+        <label><input type="radio" name="q10" value="b"> Larger training data</label>
+        <label><input type="radio" name="q10" value="c"> Faster GPUs</label>
+        <label><input type="radio" name="q10" value="d"> Improved tokenization</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['b', 'b', 'a', 'a', 'a', 'b', 'b', 'd', 'a', 'a'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

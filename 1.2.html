@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCQ Test</title>
+<link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+    <h1>HTML intermediad Test</h1>
+    <form id="quizForm">
+    
+      <!-- Question 1 -->
+      <div class="question">
+        <h3>1. Which method is used to send form data in the URL?</h3>
+        <label><input type="radio" name="q1" value="a"> POST</label>
+        <label><input type="radio" name="q1" value="b"> GET</label>
+        <label><input type="radio" name="q1" value="c"> PUT</label>
+        <label><input type="radio" name="q1" value="d"> DELETE</label>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question">
+        <h3>2. Which input type is used for email validation?</h3>
+        <label><input type="radio" name="q2" value="a"> &lt;input type="text"&gt;</label>
+        <label><input type="radio" name="q2" value="b"> &lt;input type="email"&gt;</label>
+        <label><input type="radio" name="q2" value="c"> &lt;input type="mail"&gt;</label>
+        <label><input type="radio" name="q2" value="d"> &lt;input type="validate"&gt;</label>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question">
+        <h3>3. Which tag defines a section of navigation links?</h3>
+        <label><input type="radio" name="q3" value="a"> &lt;nav&gt;</label>
+        <label><input type="radio" name="q3" value="b"> &lt;links&gt;</label>
+        <label><input type="radio" name="q3" value="c"> &lt;navigate&gt;</label>
+        <label><input type="radio" name="q3" value="d"> &lt;menu&gt;</label>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question">
+        <h3>4. What is the purpose of the meta tag with charset="UTF-8"?</h3>
+        <label><input type="radio" name="q4" value="a"> Define page keywords</label>
+        <label><input type="radio" name="q4" value="b"> Set character encoding</label>
+        <label><input type="radio" name="q4" value="c"> Redirect the page</label>
+        <label><input type="radio" name="q4" value="d"> Add a CSS stylesheet</label>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question">
+        <h3>5. Which semantic element represents standalone content (e.g., a blog post)?</h3>
+        <label><input type="radio" name="q5" value="a"> &lt;section&gt;</label>
+        <label><input type="radio" name="q5" value="b"> &lt;article&gt;</label>
+        <label><input type="radio" name="q5" value="c"> &lt;div&gt;</label>
+        <label><input type="radio" name="q5" value="d"> &lt;aside&gt;</label>
+      </div>
+
+      <!-- Question 6 -->
+      <div class="question">
+        <h3>6. Which attribute makes an &lt;input&gt; field required?</h3>
+        <label><input type="radio" name="q6" value="a"> mandatory</label>
+        <label><input type="radio" name="q6" value="b"> validate</label>
+        <label><input type="radio" name="q6" value="c"> required</label>
+        <label><input type="radio" name="q6" value="d"> necessary</label>
+      </div>
+
+      <!-- Question 7 -->
+      <div class="question">
+        <h3>7. What does the &lt;iframe&gt; tag do?</h3>
+        <label><input type="radio" name="q7" value="a"> Embed an image</label>
+        <label><input type="radio" name="q7" value="b"> Embed another webpage</label>
+        <label><input type="radio" name="q7" value="c"> Create a frame</label>
+        <label><input type="radio" name="q7" value="d"> Insert a video</label>
+      </div>
+
+      <!-- Question 8 -->
+      <div class="question">
+        <h3>8. Which tag is used to define table headers?</h3>
+        <label><input type="radio" name="q8" value="a"> &lt;td&gt;</label>
+        <label><input type="radio" name="q8" value="b"> &lt;th&gt;</label>
+        <label><input type="radio" name="q8" value="c"> &lt;tr&gt;</label>
+        <label><input type="radio" name="q8" value="d"> &lt;thead&gt;</label>
+      </div>
+
+      <!-- Question 9 -->
+      <div class="question">
+        <h3>9. Which tag is deprecated in HTML5?</h3>
+        <label><input type="radio" name="q9" value="a"> &lt;div&gt;</label>
+        <label><input type="radio" name="q9" value="b"> &lt;span&gt;</label>
+        <label><input type="radio" name="q9" value="c"> &lt;font&gt;</label>
+        <label><input type="radio" name="q9" value="d"> &lt;section&gt;</label>
+      </div>
+
+      <!-- Question 10 -->
+      <div class="question">
+        <h3>10. Which element is used for a dropdown list?</h3>
+        <label><input type="radio" name="q10" value="a"> &lt;select&gt;</label>
+        <label><input type="radio" name="q10" value="b"> &lt;dropdown&gt;</label>
+        <label><input type="radio" name="q10" value="c"> &lt;list&gt;</label>
+        <label><input type="radio" name="q10" value="d"> &lt;option&gt;</label>
+      </div>
+
+      <button type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+    <script src="main-script.js"></script>
+  <script>
+ function submitQuiz() {
+    const answers = {
+        q1: 'b',  // GET
+        q2: 'b',  // email
+        q3: 'a',  // nav
+        q4: 'b',  // charset
+        q5: 'b',  // article
+        q6: 'c',  // required
+        q7: 'b',  // iframe
+        q8: 'b',  // th
+        q9: 'c',  // font
+        q10: 'a'  // select
+      };
+
+      let score = 0;
+
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      // Save score in localStorage
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html"; // Redirect to result page
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 2.5em;
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0, 188, 212, 0.7);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        #P {
+            font-size: 1.5em;
+            color: #00bcd4;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #00bcd4;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1.1em;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0097a7;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 15px;
+        }
+
+        .email-text {
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        .email-text a {
+            color: #00bcd4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .email-text a:hover {
+            text-decoration: underline;
+        }
+
+        #result {
+            font-size: 1.1em;
+            color: #00bcd4;
+            margin-top: 15px;
+        }
+
+        button.back-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%); /* Centers it horizontally */
+        }
+
+        button.back-btn:hover {
+            background-color: #d32f2f;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Certificate ID</h1>
+        <p>Your last certificate ID is: <span id="P"></span></p>
+        <button onclick="copyToClipboard()">Copy</button>
+        <p class="email-text">To get your certificate again, mail your certificate ID to this email: <a href="mailto:muneebn350@gmail.com">muneebn350@gmail.com</a></p>
+        <p id="result"></p>
+        <button class="back-btn" onclick="window.location.href='index.html'">Back</button>
+    </div>
+
+    <script>
+        const P = document.getElementById("P");
+        const id = localStorage.getItem("certificateId");
+        const result = document.getElementById("result");
+        P.innerHTML = id || "no test given yet, maybe you clear your broswer storage.";
+
+        function copyToClipboard() {
+            const certificateId = id;
+            navigator.clipboard.writeText(certificateId)
+                .then(() => {
+                    result.innerHTML = "Certificate ID copied to clipboard!";
+                    result.style.color = "#00bcd4";
+                })
+                .catch(err => {
+                    console.error("Failed to copy text: ", err);
+                });
+        }
+    </script>
+</body>
+</html>

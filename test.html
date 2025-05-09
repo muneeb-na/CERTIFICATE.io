@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CERTIFICATE.io - Instructions</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00bcd4;
+      margin-bottom: 30px;
+    }
+
+    ol {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      padding-left: 20px;
+      font-size: 1.1rem;
+    }
+
+    ol li {
+      margin-bottom: 15px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 25px;
+      background-color: #555;
+      color: #999;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      cursor: not-allowed;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    button.active {
+      background-color: #00bcd4;
+      color: #121212;
+      cursor: pointer;
+    }
+
+    #countdown {
+      font-size: 1.1rem;
+      color: #ff4081;
+    }
+
+    @media (max-width: 600px) {
+      ol {
+        font-size: 1rem;
+      }
+
+      button {
+        font-size: 1rem;
+      }
+
+      .button-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Read All Instructions Before Starting the Test</h1>
+  <ol>
+    <li>Do not use any external tools or websites to assist you during the test.</li>
+    <li>If you try to change tab multiple times, your test will be discarded.</li>
+    <li>Ensure your internet connection is stable to avoid interruptions.</li>
+    <li>Follow the instructions carefully and answer all questions to the best of your ability.</li>
+    <li>If you encounter any technical issues, end your test and report the problem.</li>
+    <li>Once you start the test, you will have a limited time to complete it.</li>
+    <li>Make sure to review your answers before submitting.</li>
+    <li>Do not refresh the page or navigate away from the test during the exam.</li>
+  </ol>
+
+  <div class="button-container">
+    <button id="startBtn" disabled>Start Test</button>
+    <span id="countdown">Wait 10s</span>
+  </div>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const countdown = document.getElementById('countdown');
+
+    let timeLeft = 7;
+    const interval = setInterval(() => {
+      timeLeft--;
+      countdown.textContent = timeLeft > 0 ? `Wait ${timeLeft}s` : "You may start now";
+
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        startBtn.disabled = false;
+        startBtn.classList.add('active');
+        countdown.style.color = '#00e676';
+      }
+    }, 1000);
+
+    startBtn.addEventListener('click', () => {
+      window.location.href = 'loding.html'; // Replace with the actual test URL
+    });
+  </script>
+</body>
+</html>

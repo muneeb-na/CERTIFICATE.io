@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Front-End Web Development intermediad Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1> Front-End Web Development intermediad level Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What is the primary purpose of React's Suspense component?</h3>
+        <label><input type="radio" name="q1" value="a"> Error boundary handling</label>
+        <label><input type="radio" name="q1" value="b"> State management</label>
+        <label><input type="radio" name="q1" value="c"> Code splitting and lazy loading</label>
+        <label><input type="radio" name="q1" value="d"> Animation coordination</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. Which CSS property enables hardware-accelerated rendering?</h3>
+        <label><input type="radio" name="q2" value="a"> will-change</label>
+        <label><input type="radio" name="q2" value="b"> contain: strict</label>
+        <label><input type="radio" name="q2" value="c"> backface-visibility</label>
+        <label><input type="radio" name="q2" value="d"> transform: translateZ(0)</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. What is the main advantage of using Web Workers?</h3>
+        <label><input type="radio" name="q3" value="a"> Execute code in separate thread</label>
+        <label><input type="radio" name="q3" value="b"> DOM manipulation</label>
+        <label><input type="radio" name="q3" value="c"> CSS animation optimization</label>
+        <label><input type="radio" name="q3" value="d"> Network request caching</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. Which optimization does React's Virtual DOM diffing algorithm use?</h3>
+        <label><input type="radio" name="q4" value="a"> Memoization pattern</label>
+        <label><input type="radio" name="q4" value="b"> Binary search tree</label>
+        <label><input type="radio" name="q4" value="c"> Reconciliation with keys</label>
+        <label><input type="radio" name="q4" value="d"> Garbage collection</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. What is the primary difference between CSS Grid and Flexbox?</h3>
+        <label><input type="radio" name="q5" value="a"> Grid: 2D layout, Flexbox: 1D</label>
+        <label><input type="radio" name="q5" value="b"> Grid: Responsive, Flexbox: Fixed</label>
+        <label><input type="radio" name="q5" value="c"> Grid: Content-first, Flexbox: Layout-first</label>
+        <label><input type="radio" name="q5" value="d"> Grid: Better browser support</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. What is the purpose of debouncing in JavaScript?</h3>
+        <label><input type="radio" name="q6" value="a"> Memory optimization</label>
+        <label><input type="radio" name="q6" value="b"> Event propagation control</label>
+        <label><input type="radio" name="q6" value="c"> Animation frame syncing</label>
+        <label><input type="radio" name="q6" value="d"> Rate-limiting function calls</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. Which React hook should be used for performance optimization of functional components?</h3>
+        <label><input type="radio" name="q7" value="a"> useEffect</label>
+        <label><input type="radio" name="q7" value="b"> React.memo</label>
+        <label><input type="radio" name="q7" value="c"> useCallback</label>
+        <label><input type="radio" name="q7" value="d"> useReducer</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. What is the correct BEM (Block Element Modifier) syntax?</h3>
+        <label><input type="radio" name="q8" value="a"> block-element__modifier</label>
+        <label><input type="radio" name="q8" value="b"> block__element_modifier</label>
+        <label><input type="radio" name="q8" value="c"> block__element--modifier</label>
+        <label><input type="radio" name="q8" value="d"> block-element--modifier</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. What is the primary use case for React's useReducer hook?</h3>
+        <label><input type="radio" name="q9" value="a"> Form validation</label>
+        <label><input type="radio" name="q9" value="b"> API calls</label>
+        <label><input type="radio" name="q9" value="c"> Complex state logic</label>
+        <label><input type="radio" name="q9" value="d"> Context API integration</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. Which technique helps prevent Cumulative Layout Shift (CLS)?</h3>
+        <label><input type="radio" name="q10" value="a"> CSS containment</label>
+        <label><input type="radio" name="q10" value="b"> Aspect ratio boxes</label>
+        <label><input type="radio" name="q10" value="c"> Lazy loading</label>
+        <label><input type="radio" name="q10" value="d"> All of the above</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['c', 'a', 'a', 'c', 'a', 'd', 'b', 'c', 'c', 'd'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

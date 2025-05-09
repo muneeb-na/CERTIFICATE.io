@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cloud Computing Intermediate Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Cloud Computing Intermediate Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What is the primary purpose of an Availability Zone?</h3>
+        <label><input type="radio" name="q1" value="a"> Geographic region</label>
+        <label><input type="radio" name="q1" value="b"> Isolated data center within a region</label>
+        <label><input type="radio" name="q1" value="c"> Content delivery network node</label>
+        <label><input type="radio" name="q1" value="d"> Load balancing service</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. Which storage type is best for big data analytics?</h3>
+        <label><input type="radio" name="q2" value="a"> Block storage</label>
+        <label><input type="radio" name="q2" value="b"> Object storage</label>
+        <label><input type="radio" name="q2" value="c"> File storage</label>
+        <label><input type="radio" name="q2" value="d"> Ephemeral storage</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. What does "auto-scaling" achieve in cloud architecture?</h3>
+        <label><input type="radio" name="q3" value="a"> Automatic security updates</label>
+        <label><input type="radio" name="q3" value="b"> Dynamic resource adjustment</label>
+        <label><input type="radio" name="q3" value="c"> Data encryption</label>
+        <label><input type="radio" name="q3" value="d"> Network routing</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. What is the main benefit of a CDN?</h3>
+        <label><input type="radio" name="q4" value="a"> Reduce latency for global users</label>
+        <label><input type="radio" name="q4" value="b"> Increase storage capacity</label>
+        <label><input type="radio" name="q4" value="c"> Improve database queries</label>
+        <label><input type="radio" name="q4" value="d"> Enhance VM performance</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. Which is a characteristic of serverless computing?</h3>
+        <label><input type="radio" name="q5" value="a"> Persistent servers</label>
+        <label><input type="radio" name="q5" value="b"> Event-driven execution</label>
+        <label><input type="radio" name="q5" value="c"> Manual scaling</label>
+        <label><input type="radio" name="q5" value="d"> OS management</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. What is the purpose of IAM roles?</h3>
+        <label><input type="radio" name="q6" a"> Manage network traffic</label>
+        <label><input type="radio" name="q6" b"> Assign permissions to entities</label>
+        <label><input type="radio" name="q6" c"> Monitor resource usage</label>
+        <label><input type="radio" name="q6" d"> Encrypt data at rest</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. Which disaster recovery strategy has the lowest RTO?</h3>
+        <label><input type="radio" name="q7" a"> Backup and restore</label>
+        <label><input type="radio" name="q7" b"> Pilot light</label>
+        <label><input type="radio" name="q7" c"> Warm standby</label>
+        <label><input type="radio" name="q7" d"> Multi-region active-active</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. What is Kubernetes primarily used for?</h3>
+        <label><input type="radio" name="q8" a"> Serverless computing</label>
+        <label><input type="radio" name="q8" b"> Container orchestration</label>
+        <label><input type="radio" name="q8" c"> Object storage</label>
+        <label><input type="radio" name="q8" d"> Virtual machine management</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. What's the difference between horizontal and vertical scaling?</h3>
+        <label><input type="radio" name="q9" a"> Add resources vs add instances</label>
+        <label><input type="radio" name="q9" b"> Add instances vs add resources</label>
+        <label><input type="radio" name="q9" c"> Manual vs automatic scaling</label>
+        <label><input type="radio" name="q9" d"> Storage vs compute scaling</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. Which service provides managed relational databases?</h3>
+        <label><input type="radio" name="q10" a"> Amazon S3</label>
+        <label><input type="radio" name="q10" b"> Azure Blob Storage</label>
+        <label><input type="radio" name="q10" c"> Google Cloud Spanner</label>
+        <label><input type="radio" name="q10" d"> AWS RDS</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['b', 'b', 'b', 'a', 'b', 'b', 'd', 'b', 'b', 'd'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>
