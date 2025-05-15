@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CERTIFICATE.io - Home</title>
+  <title>CERTIFICATE.io - Professional Certifications</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #00ff9d;
+      --secondary: #0099ff;
+      --dark-bg: #0a0a0a;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --text-light: rgba(255, 255, 255, 0.9);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -12,741 +22,406 @@
     }
 
     body {
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-      color: white;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      height: 100vh;
+      background: var(--dark-bg);
+      color: var(--text-light);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
     }
 
+    /* Header */
     #top {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px); /* GLASS EFFECT */
-      height: 80px;
-      width: 100%;
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-      flex-wrap: wrap;
-      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    #top h1 {
-      font-size: 30px;
-      color: transparent;
-      -webkit-text-stroke: 1px #00ffff; /* STROKE EFFECT */
-      mix-blend-mode: difference; /* BLEND with BG */
-    }
-
-    #a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      padding: 10px 20px;
-      background: linear-gradient(45deg, #ff0057, #00c3ff);
-      border-radius: 20px;
-      transition: 0.3s;
-      white-space: nowrap;
-    }
-
-    #a:hover {
-      filter: brightness(1.2);
-      transform: scale(1.05);
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-      #top {
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-        padding: 15px;
-      }
-
-      #a {
-        width: 100%;
-        text-align: center;
-      }
-
-      #top h1 {
-        font-size: 24px;
-      }
-    }
-
-    /* Skills container adjustments */
-    #skills-container {
+    #logo-area {
       display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      padding: 40px;
+      flex-direction: column;
+      gap: 0.25rem;
     }
 
-    .skillcard {
-      background-color: #f0f0f0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 200px;
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    #main-title {
+      font-size: 2rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      letter-spacing: -0.5px;
     }
 
-    .skillcard h1 {
-      font-size: 22px;
-      margin-bottom: 15px;
-      color: #000000;
+    #sub-brand {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.5px;
     }
 
-    .skillcard a {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #0077ff;
-      color: #000000;
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      font-weight: 600;
+      border-radius: 0.5rem;
       text-decoration: none;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
     }
 
-    .skillcard a:hover {
-      background-color: #005fcc;
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 255, 157, 0.3);
     }
 
-    .skillcard:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    h3 {
+    /* Sections */
+    .section-heading {
       text-align: center;
-      margin: 10px 10px 10px 10px;
-      font-size: 30px;
+      margin: 4rem 0 2rem;
+      font-size: 2.5rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      padding-bottom: 0.5rem;
     }
 
-    /* Popup styling */
+    .section-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 0 2rem;
+      max-width: 1440px;
+      margin: 0 auto 4rem;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border-color: var(--primary);
+    }
+
+    .skill-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .test-button {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .test-button:hover {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: #000;
+      border-color: transparent;
+    }
+
+    /* Popup */
     #popup {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
       align-items: center;
       justify-content: center;
       z-index: 1000;
     }
 
     #popup-content {
-      background: white;
-      color: black;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 1rem;
       width: 90%;
       max-width: 400px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    #popup-content select, #popup-content button {
-      margin-top: 15px;
-      padding: 10px;
+    #popup-content h2 {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    #test-level {
       width: 100%;
-      font-size: 16px;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.5rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
     }
 
-    /* General Styles */
-    #bloack {
-      color: #000000;
-      font-size: 20px;
-      text-align: center;
-      margin-top: 10px;
-      font-weight: bold;
-      display: none;
+    #test-level option {
+      background: var(--dark-bg);
     }
 
-    /* Specific Targeting for Advanced Technology Heading */
-    #advanced-tech h3 {
-      text-align: center;
-      margin: 10px;
-      font-size: 30px;
-    }
-
-    /* Container adjustments for Advanced Technology */
-    #advanced-tech {
-      display: flex;
-      justify-content: center;
+    .popup-button {
       width: 100%;
-      max-width: 100%;
-      padding: 20px;
-      gap: 20px;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: var(--transition);
     }
 
-    /* Responsive Styles for smaller screens */
-    @media (max-width: 768px) {
-      #advanced-tech h3 {
-        font-size: 24px;
-      }
-      #a{
-        width: 100%;
-     
-      }
-      
-      #advanced-tech {
-        padding: 20px;
-        width: 100%;
-        gap: 15px;
-      }
-    }
-    #top {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px); /* GLASS EFFECT */
-      height: 80px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-      flex-wrap: wrap;
-      gap: 10px;
+    #start {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: #000;
+      font-weight: 600;
     }
 
-    #top h1 {
-      font-size: 40px; /* Bigger font size */
-      color: transparent;
-      -webkit-text-stroke: 1px #00ffff; /* STROKE EFFECT */
-      mix-blend-mode: difference; /* BLEND with BG */
-      flex-grow: 1;
+    #start:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    #footer {
+      margin-top: 6rem;
+      padding: 4rem 2rem;
+      background: rgba(15, 15, 15, 0.95);
       text-align: center;
-      margin-left: 12%;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    #a {
+    #footer h1 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-light);
+    }
+
+    #footer a {
+      color: var(--primary);
       text-decoration: none;
-      color: white;
-      font-weight: bold;
-      padding: 10px 20px;
-      background: linear-gradient(45deg, #ff0057, #00c3ff);
-      border-radius: 20px;
-      transition: 0.3s;
-      white-space: nowrap;
-      text-align: center;
+      transition: var(--transition);
     }
 
-    #a:hover {
-      filter: brightness(1.2);
-      transform: scale(1.05);
+    #footer a:hover {
+      opacity: 0.8;
     }
 
-    /* Responsive Styles */
     @media (max-width: 768px) {
       #top {
         flex-direction: column;
-        align-items: center;
-        height: auto;
-        padding: 15px;
+        gap: 1rem;
+        padding: 1rem;
       }
 
-      #search {
-        width: 100%;
-        margin: 10px 0;
+      .skills-grid {
+        padding: 0 1rem;
       }
 
-      #a {
-        width: 100%;
-        text-align: center;
+      .section-heading {
+        font-size: 2rem;
+        margin: 3rem 0 1.5rem;
       }
 
-      #top h1 {
-        font-size: 38px; /* Slightly smaller for mobile */
+      #footer {
+        padding: 3rem 1.5rem;
       }
     }
 
-    /* Adjusting the layout of skill cards */
-    #skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      padding: 40px;
+    @media (max-width: 480px) {
+      .section-heading {
+        font-size: 1.75rem;
+      }
+
+      .skill-card h2 {
+        font-size: 1.25rem;
+      }
+
+      .test-button {
+        padding: 0.5rem 1rem;
+      }
     }
-
-    .skillcard {
-      background-color: #f0f0f0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 200px;
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .skillcard h1 {
-      font-size: 22px;
-      margin-bottom: 15px;
-      color: #000000;
-    }
-
-    .skillcard a {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #0077ff;
-      color: #000000;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-    }
-
-    .skillcard a:hover {
-      background-color: #005fcc;
-    }
-
-    .skillcard:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    h3 {
-      text-align: center;
-      margin: 10px 10px 10px 10px;
-      font-size: 30px;
-    }
-/* Reset styles for all elements */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Footer Styling */
-#last {
-  width: 100vw; /* Full screen width */
-  background-color: #1e1e2f;
-  color: #ffffff;
-  padding: 40px 20px;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  border-top: 4px solid #00bcd4;
-}
-
-/* H1 Styling */
-#last-h1 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: #00bcd4;
-}
-
-/* Link Button Styling */
-#last-a {
-  display: inline-block;
-  margin: 10px 0;
-  text-decoration: none;
-  color: #ffffff;
-  background-color: #00bcd4;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-#last-a:hover {
-  background-color: #0097a7;
-}
-
-/* Email Info Styling */
-#last-h2 {
-  font-size: 18px;
-  margin-top: 20px;
-  color: #cccccc;
-}
-
-#last-h2 a {
-  color: #00e676;
-  text-decoration: none;
-}
-
-#last-h2 a:hover {
-  text-decoration: underline;
-}
-
-/* ✅ Responsive Styles */
-@media (max-width: 768px) {
-  #last-h1 {
-    font-size: 18px;
-  }
-
-  #last-a {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-
-  #last-h2 {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  #last {
-    padding: 30px 10px;
-  }
-
-  #last-h1 {
-    font-size: 16px;
-  }
-
-  #last-a {
-    padding: 6px 14px;
-    font-size: 13px;
-  }
-
-  #last-h2 {
-    font-size: 14px;
-  }
-  #ROWA {
-    font-size: 1px;
-  }
-}
-#logo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
-  text-align: center;
-}
-
-#main-logo {
-  font-size: 40px;
-  color: transparent;
-  -webkit-text-stroke: 1px #00ffff;
-  mix-blend-mode: difference;
-}
-
-#ROWA {
-  font-size: 16px;
-  color: #cccccc;
-  -webkit-text-stroke: 0.3px #cccccc;
-  text-decoration: none;
-  margin-top: 2px;
-}
-
-@media (max-width: 768px) {
-  #main-logo {
-    font-size: 30px;
-  }
-
-  #ROWA {
-    font-size: 14px;
-  }
-}
-#top {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-#logo-area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  flex: 1;
-}
-
-#main-title {
-  font-size: 40px;
-  margin: 0;
-  color: transparent;
-  -webkit-text-stroke: 1px #00ff1e;
-  mix-blend-mode: difference;
-  font-weight: bold;
-}
-
-#sub-brand {
-  font-size: 14px;
-  color: #ccc;
-  -webkit-text-stroke: 0.3px #ccc;
-  margin-top: -8px;
-}
-
-#a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  padding: 10px 20px;
-  background: linear-gradient(45deg, #ff0057, #00c3ff);
-  border-radius: 20px;
-  transition: 0.3s;
-  white-space: nowrap;
-}
-
-/* Hover effect */
-#a:hover {
-  filter: brightness(1.2);
-  transform: scale(1.05);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  #top {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  #logo-area {
-    order: 1;
-  }
-
-  #a {
-    order: 2;
-    width: 100%;
-    max-width: 200px;
-  }
-
-  #main-title {
-    font-size: 32px;
-  }
-
-  #sub-brand {
-    font-size: 12px;
-  }
-}
-#last {
-  width: 100%;
-  background-color: #121212;
-  color: #ffffff;
-  padding: 50px 30px;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  border-top: 3px solid #00bcd4;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 0;
-padding-bottom: 0;
-
-}
-
-#last-h1 {
-  font-size: 28px;
-  font-weight: bold;
-  color: #00bcd4;
-}
-
-#last-a {
-  display: inline-block;
-  padding: 12px 24px;
-  background: linear-gradient(45deg, #00bcd4, #00e676);
-  color: #000;
-  font-weight: bold;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-#last-a:hover {
-  background: linear-gradient(45deg, #00bcd4, #00c853);
-  transform: scale(1.05);
-  color: white;
-}
-
-#last-h2 {
-  font-size: 18px;
-  color: #cccccc;
-}
-
-#last-h2 a {
-  color: #00e676;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-#last-h2 a:hover {
-  text-decoration: underline;
-}
-
-/* 📱 Responsive Design */
-@media (max-width: 768px) {
-  #last {
-    padding: 40px 20px;
-    gap: 15px;
-  }
-
-  #last-h1 {
-    font-size: 22px;
-  }
-
-  #last-a {
-    padding: 10px 20px;
-    font-size: 15px;
-  }
-
-  #last-h2 {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  #last {
-    padding: 30px 15px;
-  }
-
-  #last-h1 {
-    font-size: 20px;
-  }
-
-  #last-a {
-    padding: 8px 18px;
-    font-size: 14px;
-  }
-
-  #last-h2 {
-    font-size: 15px;
-  }
-}
-
-
   </style>
 </head>
 <body>
-  <div id="top">
+  <header id="top">
     <div id="logo-area">
       <h1 id="main-title">CERTIFICATE.io</h1>
       <span id="sub-brand">by ROWA</span>
     </div>
-    <a id="a" href="cer.html">My Certificate</a>
-  </div>
-  
-  
-  
-  <h3>coding skills</h3>
-  <div id="skills-container">
-    <div class="skillcard">
-      <h1>HTML</h1>
-      <a id="button-1" class="take-test-button" href="#">Take test</a>
-    </div>
-    <div class="skillcard">
-      <h1>CSS</h1>
-      <a id="button-2" class="take-test-button" href="#">Take test</a>
-    </div>
-    <div class="skillcard">
-      <h1>JavaScript</h1>
-      <a id="button-3" class="take-test-button" href="#">Take test</a>
-    </div>
-    <div class="skillcard">
-      <h1>Python</h1>
-      <a id="button-4" class="take-test-button" href="#">Take test</a>
-    </div>
-    <div class="skillcard">
-        <h1>C</h1>
-        <a id="button-5" class="take-test-button" href="#">Take test</a>
-      </div>
-      <div class="skillcard">
-        <h1>C++</h1>
-        <a id="button-6" class="take-test-button" href="#">Take test</a>
-      </div>
-      <div class="skillcard">
-        <h1>C#</h1>
-        <a id="button-7" class="take-test-button" href="#">Take test</a>
-      </div>
-      <div class="skillcard">
-        <h1>Java</h1>
-        <a id="button-8" class="take-test-button" href="#">Take test</a>
-      </div>
-  </div>
-  <h3>Tech Stacks</h3>
-  <div id="skills-container">
-    <div class="skillcard">
-        <h1>full stack web development</h1>
-        <a id="button-9" class="take-test-button" href="#">Take test</a>
-      </div>
-      <div class="skillcard">
-        <h1>FRONT end web development</h1>
-        <a id="button-10" class="take-test-button" href="#">Take test</a>
-      </div>
-      <div class="skillcard">
-        <h1>Back end web development</h1>
-        <a id="button-11" class="take-test-button" href="#">Take test</a>
-      </div>
-      <div class="skillcard">
-        <h1>Software development</h1>
-        <a id="button-12" class="take-test-button" href="#">Take test</a>
-      </div>
-  </div>  
-  <h3>Designing Skills</h3>
-  <div id="skills-container">
-    <div class="skillcard">
-        <h1>UI/UX design</h1>
-        <a id="button-13" class="take-test-button" href="#">Take test</a>
-      </div>
-      <div class="skillcard">
-        <h1>Canva</h1>
-        <a id="button-14" class="take-test-button" href="#">Take test</a>
-      </div>
-      <div class="skillcard">
-        <h1>Figma</h1>
-        <a id="button-15" class="take-test-button" href="#">Take test</a>
-      </div>
-      <div class="skillcard">
-        <h1>Adobe Photoshop</h1>
-        <a id="button-16" class="take-test-button" href="#">Take test</a>
-      </div>
-  <H3 id="advanced-tech">Advance Technologies<p id="bloack">hello</p></H3>
-    <div id="skills-container">
-        <div class="skillcard">
-            <h1>Machine Learning</h1>
-            <a id="button-17" class="take-test-button" href="#">Take test</a>
-        </div>
-        <div class="skillcard">
-            <h1>Artificial Intelligence</h1>
-            <a id="button-18" class="take-test-button" href="#">Take test</a>
-        </div>
-        <div class="skillcard">
-            <h1>Cloud Computing</h1>
-            <a id="button-19" class="take-test-button" href="#">Take test</a>
-            </div>
-        <div class="skillcard">
-            <h1>Advanced AI & Machine Learning</h1>
-            <a id="button-20" class="take-test-button" href="#">Take test</a>   
-            </div>
-    </div>
-     </div>
-    <H3>NON-TECH SKILLS</H3>
-    <div id="skills-container">
-        <div class="skillcard">
-            <h1>Problem Solving</h1>
-            <a id="button-21" class="take-test-button" href="#">Take test</a>
-        </div>
-       
-        <div id="popup" style="display: none;">
-          <div id="popup-content" >
-            <h2>Select your level</h2>
-            <select id="test-level">
-              <option value="beginner">Beginner</option>
-              <option value="intermediate">Intermediate</option>
-              <option value="advanced">Advanced</option>
-            </select>
-            <button id="start">Start Test</button>
-            <button onclick="document.getElementById('popup').style.display='none'">Close</button>
-          </div>
-        </div>
+    <a href="cer.html" class="cta-button">My Certificates</a>
+  </header>
 
-        <div id="last">
-          <h1 id="last-h1">This website is OWNED by The Republic of Web Access (ROWA)</h1>
-          <a href="https://muneeb-na.github.io/ROWA/" id="last-a">Visit Web of Republic</a>
-          <h2 id="last-h2">
-            You can mail all your complaints to:<br>
-            <a href="mailto:muneebn350@gmail.com">muneebn350@gmail.com</a>
-          </h2>
-        </div>
-        
+  <main>
+    <!-- Coding Skills -->
+    <h2 class="section-heading">Coding Skills</h2>
+    <div class="skills-grid">
+      <article class="skill-card">
+        <h2>HTML</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>CSS</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>JavaScript</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Python</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>C</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>C++</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>C#</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Java</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+    </div>
+
+    <!-- Tech Stacks -->
+    <h2 class="section-heading">Tech Stacks</h2>
+    <div class="skills-grid">
+      <article class="skill-card">
+        <h2>Full Stack Development</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Frontend Development</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Backend Development</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Software Development</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+    </div>
+
+    <!-- Designing Skills -->
+    <h2 class="section-heading">Design Skills</h2>
+    <div class="skills-grid">
+      <article class="skill-card">
+        <h2>UI/UX Design</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Canva</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Figma</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Adobe Photoshop</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+    </div>
+
+    <!-- Advanced Tech -->
+    <h2 class="section-heading">Advanced Technologies</h2>
+    <div class="skills-grid">
+      <article class="skill-card">
+        <h2>Machine Learning</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Artificial Intelligence</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Cloud Computing</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+      <article class="skill-card">
+        <h2>Advanced AI/ML</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+    </div>
+
+    <!-- Non-Tech Skills -->
+    <h2 class="section-heading">Non-Tech Skills</h2>
+    <div class="skills-grid">
+      <article class="skill-card">
+        <h2>Problem Solving</h2>
+        <a href="#" class="test-button take-test-button">Take Test</a>
+      </article>
+    </div>
+
+    <!-- Popup -->
+    <div id="popup">
+      <div id="popup-content">
+        <h2>Select Your Skill Level</h2>
+        <select id="test-level">
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+        <button id="start" class="popup-button">Start Test</button>
+        <button class="popup-button" onclick="document.getElementById('popup').style.display='none'">Close</button>
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer">
+    <h1>Owned by The Republic of Web Access (ROWA)</h1>
+    <a href="https://muneeb-na.github.io/ROWA/" class="cta-button" style="margin: 1.5rem 0; color: #fff;">Visit ROWA</a>
+    <p style="color: rgba(255, 255, 255, 0.7);">
+      Contact: <a href="mailto:muneebn350@gmail.com">muneebn350@gmail.com</a>
+    </p>
+  </footer>
+
   <script>
     const buttons = document.querySelectorAll('.take-test-button');
 
