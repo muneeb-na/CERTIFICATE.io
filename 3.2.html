@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Intermediate Test</title>
+  <link rel="stylesheet" href="main-style.css" />
+</head>
+<body>
+  <h1>JavaScript Intermediate Test</h1>
+  <form id="quizForm">
+
+    <!-- Question 1 -->
+    <div class="question">
+      <h3>1. What will the following code output?<br><code>console.log(typeof null);</code></h3>
+      <label><input type="radio" name="q1" value="a" /> "object"</label>
+      <label><input type="radio" name="q1" value="b" /> "null"</label>
+      <label><input type="radio" name="q1" value="c" /> "undefined"</label>
+      <label><input type="radio" name="q1" value="d" /> "number"</label>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question">
+      <h3>2. Which method is used to create a new array with only elements that pass a test?</h3>
+      <label><input type="radio" name="q2" value="a" /> map()</label>
+      <label><input type="radio" name="q2" value="b" /> filter()</label>
+      <label><input type="radio" name="q2" value="c" /> reduce()</label>
+      <label><input type="radio" name="q2" value="d" /> forEach()</label>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question">
+      <h3>3. What is the result of <code>2 + '2'</code> in JavaScript?</h3>
+      <label><input type="radio" name="q3" value="a" /> 4</label>
+      <label><input type="radio" name="q3" value="b" /> 22</label>
+      <label><input type="radio" name="q3" value="c" /> NaN</label>
+      <label><input type="radio" name="q3" value="d" /> Error</label>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question">
+      <h3>4. Which of the following is NOT a primitive data type?</h3>
+      <label><input type="radio" name="q4" value="a" /> string</label>
+      <label><input type="radio" name="q4" value="b" /> boolean</label>
+      <label><input type="radio" name="q4" value="c" /> object</label>
+      <label><input type="radio" name="q4" value="d" /> number</label>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question">
+      <h3>5. What is a closure in JavaScript?</h3>
+      <label><input type="radio" name="q5" value="a" /> A function inside a loop</label>
+      <label><input type="radio" name="q5" value="b" /> A function that returns another function</label>
+      <label><input type="radio" name="q5" value="c" /> A function that has access to its outer function's scope</label>
+      <label><input type="radio" name="q5" value="d" /> A function that closes after execution</label>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question">
+      <h3>6. What will <code>this</code> refer to in a regular function (non-arrow) in strict mode?</h3>
+      <label><input type="radio" name="q6" value="a" /> window</label>
+      <label><input type="radio" name="q6" value="b" /> undefined</label>
+      <label><input type="radio" name="q6" value="c" /> the global object</label>
+      <label><input type="radio" name="q6" value="d" /> null</label>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question">
+      <h3>7. Which keyword is used to handle errors in async/await syntax?</h3>
+      <label><input type="radio" name="q7" value="a" /> try/catch</label>
+      <label><input type="radio" name="q7" value="b" /> error/handle</label>
+      <label><input type="radio" name="q7" value="c" /> await/error</label>
+      <label><input type="radio" name="q7" value="d" /> fetch/catch</label>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="question">
+      <h3>8. What does <code>Promise.resolve(5)</code> return?</h3>
+      <label><input type="radio" name="q8" value="a" /> A rejected promise with value 5</label>
+      <label><input type="radio" name="q8" value="b" /> A pending promise</label>
+      <label><input type="radio" name="q8" value="c" /> A resolved promise with value 5</label>
+      <label><input type="radio" name="q8" value="d" /> 5</label>
+    </div>
+
+    <!-- Question 9 -->
+    <div class="question">
+      <h3>9. Which function is used to schedule a task after a delay?</h3>
+      <label><input type="radio" name="q9" value="a" /> delay()</label>
+      <label><input type="radio" name="q9" value="b" /> wait()</label>
+      <label><input type="radio" name="q9" value="c" /> setTimeout()</label>
+      <label><input type="radio" name="q9" value="d" /> setInterval()</label>
+    </div>
+
+    <!-- Question 10 -->
+    <div class="question">
+      <h3>10. What is hoisting in JavaScript?</h3>
+      <label><input type="radio" name="q10" value="a" /> Moving variables and functions to the bottom</label>
+      <label><input type="radio" name="q10" value="b" /> Loading external scripts</label>
+      <label><input type="radio" name="q10" value="c" /> Variables and functions being moved to the top of their scope</label>
+      <label><input type="radio" name="q10" value="d" /> None of the above</label>
+    </div>
+
+    <button type="button" onclick="submitQuiz()">Submit</button>
+  </form>
+
+  <script>
+    function submitQuiz() {
+      const answers = {
+        q1: 'a', // typeof null = "object"
+        q2: 'b', // filter()
+        q3: 'b', // "22"
+        q4: 'c', // object is not primitive
+        q5: 'c', // closure = access outer function's scope
+        q6: 'b', // strict mode = undefined
+        q7: 'a', // try/catch
+        q8: 'c', // resolved promise with 5
+        q9: 'c', // setTimeout
+        q10: 'c' // hoisting = move to top
+      };
+
+      let score = 0;
+
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

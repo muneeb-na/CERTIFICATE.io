@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Python Intermediate Test</title>
+  <link rel="stylesheet" href="main-style.css">
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>Python Intermediate Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What is the output of: print(2 ** 3 ** 2)?</h3>
+        <label><input type="radio" name="q1" value="a"> 64</label>
+        <label><input type="radio" name="q1" value="b"> 512</label>
+        <label><input type="radio" name="q1" value="c"> 256</label>
+        <label><input type="radio" name="q1" value="d"> Error</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. What does the strip() function do in Python?</h3>
+        <label><input type="radio" name="q2" value="a"> Removes all whitespace</label>
+        <label><input type="radio" name="q2" value="b"> Removes spaces from the ends</label>
+        <label><input type="radio" name="q2" value="c"> Removes all characters</label>
+        <label><input type="radio" name="q2" value="d"> Splits string into list</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. What keyword is used to handle exceptions?</h3>
+        <label><input type="radio" name="q3" value="a"> catch</label>
+        <label><input type="radio" name="q3" value="b"> try</label>
+        <label><input type="radio" name="q3" value="c"> except</label>
+        <label><input type="radio" name="q3" value="d"> handle</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. What is the output of len([1, [2, 3], 4])?</h3>
+        <label><input type="radio" name="q4" value="a"> 3</label>
+        <label><input type="radio" name="q4" value="b"> 4</label>
+        <label><input type="radio" name="q4" value="c"> 5</label>
+        <label><input type="radio" name="q4" value="d"> Error</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. What is the correct way to open a file for writing?</h3>
+        <label><input type="radio" name="q5" value="a"> open('file.txt', 'r')</label>
+        <label><input type="radio" name="q5" value="b"> open('file.txt')</label>
+        <label><input type="radio" name="q5" value="c"> open('file.txt', 'w')</label>
+        <label><input type="radio" name="q5" value="d"> write('file.txt')</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. What is a correct syntax for a class in Python?</h3>
+        <label><input type="radio" name="q6" value="a"> class MyClass[]:</label>
+        <label><input type="radio" name="q6" value="b"> class MyClass():</label>
+        <label><input type="radio" name="q6" value="c"> def class MyClass:</label>
+        <label><input type="radio" name="q6" value="d"> class = MyClass</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. What will be the output of: bool("False")?</h3>
+        <label><input type="radio" name="q7" value="a"> False</label>
+        <label><input type="radio" name="q7" value="b"> None</label>
+        <label><input type="radio" name="q7" value="c"> True</label>
+        <label><input type="radio" name="q7" value="d"> Error</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. What is the output of: list("abc")?</h3>
+        <label><input type="radio" name="q8" value="a"> ['abc']</label>
+        <label><input type="radio" name="q8" value="b"> ['a', 'b', 'c']</label>
+        <label><input type="radio" name="q8" value="c"> ('a','b','c')</label>
+        <label><input type="radio" name="q8" value="d"> Error</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. What will this code output: print(type(lambda x: x))?</h3>
+        <label><input type="radio" name="q9" value="a"> function</label>
+        <label><input type="radio" name="q9" value="b"> method</label>
+        <label><input type="radio" name="q9" value="c"> class</label>
+        <label><input type="radio" name="q9" value="d"> &lt;class 'function'&gt;</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. Which is used to define an abstract class?</h3>
+        <label><input type="radio" name="q10" value="a"> import abc</label>
+        <label><input type="radio" name="q10" value="b"> from abc import ABC</label>
+        <label><input type="radio" name="q10" value="c"> class MyClass(ABC):</label>
+        <label><input type="radio" name="q10" value="d"> All of the above</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['b', 'b', 'c', 'a', 'c', 'b', 'c', 'b', 'd', 'd'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector('input[name="q' + i + '"]:checked');
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

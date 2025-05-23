@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Test - CERTIFICATE.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --secondary: #0099ff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-light: rgba(255, 255, 255, 0.9);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --error: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 1rem;
+            overflow-y: auto !important;
+
+        }
+
+        .header {
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin: -1rem -1rem 2rem -1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .security-badge {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 0.5rem;
+        }
+
+        .question-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.75rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .question-box:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .question-box::after {
+            pointer-events: none;
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 0.75rem;
+            border: 1px solid transparent;
+            background: linear-gradient(45deg, var(--primary), var(--secondary)) border-box;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            mask: 
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .question-box:hover::after {
+            opacity: 0.1;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            color: var(--text-light);
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 255, 157, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        button {
+            padding: 0.875rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 157, 0.3);
+        }
+
+        button:hover::before {
+            opacity: 1;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .loading-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            display: none;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+
+        .alert.error {
+            background: rgba(255, 68, 68, 0.15);
+            color: var(--error);
+            border-color: rgba(255, 68, 68, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .question-box {
+                padding: 1.25rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 0.75rem;
+                text-align: center;
+            }
+
+            input, select {
+                padding: 0.675rem;
+                font-size: 0.9rem;
+            }
+
+            .question-box {
+                padding: 1rem;
+            }
+        }
+        select {
+    position: relative;
+    z-index: 10;
+}
+.container {
+    overflow: visible;
+}
+select, option {
+    background: white;
+    color: black ;
+}
+        select:focus {
+            background: rgb(255, 255, 255) ;
+            color: rgb(0, 0, 0) ;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">CERTIFICATE.io</div>
+        <div class="security-badge">by ROWA</div>
+    </header>
+
+    <div class="container">
+        <h1>Create MCQ Test</h1>
+        <div class="alert" id="message"></div>
+        <div id="questionsContainer">
+            <div class="question-box">
+                <input type="text" placeholder="Enter question" class="question" required>
+                <input type="text" placeholder="Option 1" class="option" required>
+                <input type="text" placeholder="Option 2" class="option" required>
+                <input type="text" placeholder="Option 3" class="option" required>
+                <input type="text" placeholder="Option 4" class="option" required>
+                <select class="correct" required>
+                    <option value="" disabled selected>Select correct answer</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                    <option value="4">Option 4</option>
+                </select>
+            </div>
+        </div>
+        <div class="button-group">
+            <button onclick="addQuestion()">➕ Add Question</button>
+            <button onclick="generateTest()">🚀 Generate Test Link</button>
+        </div>
+    </div>
+
+    <div class="loading-popup" id="loadingPopup">
+        <div class="loader"></div>
+        <p style="color: var(--text-light); margin-top: 1.5rem;">Generating Test...</p>
+    </div>
+
+    <script>
+        function showAlert(message, type = 'error') {
+            const alert = document.getElementById('message');
+            alert.textContent = message;
+            alert.className = `alert ${type}`;
+            alert.style.display = 'block';
+            setTimeout(() => alert.style.display = 'none', 5000);
+        }
+
+        function validateQuestion(questionBox) {
+            const inputs = questionBox.querySelectorAll('input');
+            const select = questionBox.querySelector('select');
+            
+            for(const input of inputs) {
+                if(!input.value.trim()) {
+                    input.focus();
+                    return false;
+                }
+            }
+            
+            if(select.value === "") {
+                select.focus();
+                return false;
+            }
+            
+            return true;
+        }
+
+        function addQuestion() {
+            const newQuestion = document.querySelector('.question-box').cloneNode(true);
+            newQuestion.querySelectorAll('input').forEach(input => input.value = '');
+            newQuestion.querySelector('select').value = '';
+            newQuestion.querySelector('select').selectedIndex = 0;
+            document.getElementById('questionsContainer').appendChild(newQuestion);
+            newQuestion.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function generateTest() {
+            const loadingPopup = document.getElementById('loadingPopup');
+            try {
+                // Validate all questions
+                const questionBoxes = document.querySelectorAll('.question-box');
+                for(const box of questionBoxes) {
+                    if(!validateQuestion(box)) {
+                        showAlert('Please fill all fields in all questions');
+                        return;
+                    }
+                }
+
+                loadingPopup.style.display = 'flex';
+                
+                const questions = Array.from(questionBoxes).map(q => ({
+                    question: q.querySelector('.question').value,
+                    option1: q.querySelectorAll('.option')[0].value,
+                    option2: q.querySelectorAll('.option')[1].value,
+                    option3: q.querySelectorAll('.option')[2].value,
+                    option4: q.querySelectorAll('.option')[3].value,
+                    correct: q.querySelector('.correct').value
+                }));
+
+                const response = await fetch('https://script.google.com/macros/s/AKfycbxjKwKG_c0uv_0hF3HbAbVTDLYvevtEK4KMh3oOD_UwvwZqd2oy_2QePIqeyj3fg3Ri/exec', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        action: 'createTest',
+                        testData: JSON.stringify(questions)
+                    })
+                });
+                
+                if(!response.ok) throw new Error('Failed to create test');
+                
+                const testId = await response.text();
+                window.location.href = `dashboard.html?testId=${testId}`;
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert(error.message || 'Error generating test. Please try again.');
+            } finally {
+                loadingPopup.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

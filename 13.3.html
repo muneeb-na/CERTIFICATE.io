@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UX/UI Design EXPERT Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>UX/UI Design Expert Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What is the primary purpose of a design system?</h3>
+        <label><input type="radio" name="q1" value="a"> Create beautiful illustrations</label>
+        <label><input type="radio" name="q1" value="b"> Maintain visual and functional consistency</label>
+        <label><input type="radio" name="q1" value="c"> Generate color palettes</label>
+        <label><input type="radio" name="q1" value="d"> Animate user interactions</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. Which Gestalt Principle explains why users perceive grouped elements as related?</h3>
+        <label><input type="radio" name="q2" value="a"> Similarity</label>
+        <label><input type="radio" name="q2" value="b"> Proximity</label>
+        <label><input type="radio" name="q2" value="c"> Closure</label>
+        <label><input type="radio" name="q2" value="d"> Continuation</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. What does Fitts's Law primarily predict in interface design?</h3>
+        <label><input type="radio" name="q3" value="a"> Time to acquire a target</label>
+        <label><input type="radio" name="q3" value="b"> Color contrast ratio</label>
+        <label><input type="radio" name="q3" value="c"> Information processing speed</label>
+        <label><input type="radio" name="q3" value="d"> Memory retention</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. Which accessibility standard requires a 3:1 contrast ratio for UI components?</h3>
+        <label><input type="radio" name="q4" value="a"> WCAG AA</label>
+        <label><input type="radio" name="q4" value="b"> WCAG AAA</label>
+        <label><input type="radio" name="q4" value="c"> Section 508</label>
+        <label><input type="radio" name="q4" value="d"> ADA Title III</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. What is the main purpose of card sorting in UX research?</h3>
+        <label><input type="radio" name="q5" value="a"> Test color preferences</label>
+        <label><input type="radio" name="q5" value="b"> Validate information architecture</label>
+        <label><input type="radio" name="q5" value="c"> Measure task completion time</label>
+        <label><input type="radio" name="q5" value="d"> Assess visual hierarchy</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. Which interaction pattern is best for primary actions in mobile apps?</h3>
+        <label><input type="radio" name="q6" value="a"> Hamburger menu</label>
+        <label><input type="radio" name="q6" value="b"> Floating Action Button</label>
+        <label><input type="radio" name="q6" value="c"> Tab bar</label>
+        <label><input type="radio" name="q6" value="d"> Swipe gestures</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. What does the "Fold" concept impact most in modern responsive design?</h3>
+        <label><input type="radio" name="q7" value="a"> Content prioritization</label>
+        <label><input type="radio" name="q7" value="b"> Server response time</label>
+        <label><input type="radio" name="q7" value="c"> Color scheme selection</label>
+        <label><input type="radio" name="q7" value="d"> Font loading speed</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. What is the primary benefit of using 8px grid systems?</h3>
+        <label><input type="radio" name="q8" value="a"> Improved animation timing</label>
+        <label><input type="radio" name="q8" value="b"> Consistent spacing and alignment</label>
+        <label><input type="radio" name="q8" value="c"> Better color contrast</label>
+        <label><input type="radio" name="q8" value="d"> Reduced file sizes</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. Which method is best for testing usability of high-fidelity prototypes?</h3>
+        <label><input type="radio" name="q9" value="a"> A/B testing</label>
+        <label><input type="radio" name="q9" value="b"> Tree testing</label>
+        <label><input type="radio" name="q9" value="c"> Moderated user testing</label>
+        <label><input type="radio" name="q9" value="d"> Heatmap analysis</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. What does "cognitive load" refer to in UX design?</h3>
+        <label><input type="radio" name="q10" value="a"> Server processing requirements</label>
+        <label><input type="radio" name="q10" value="b"> Mental effort required to use interface</label>
+        <label><input type="radio" name="q10" value="c"> Device memory usage</label>
+        <label><input type="radio" name="q10" value="d"> Network bandwidth consumption</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['b', 'b', 'a', 'a', 'b', 'b', 'a', 'b', 'c', 'b'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

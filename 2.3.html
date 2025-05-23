@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCQ Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+    <h1>Advanced CSS Test</h1>
+    <form id="quizForm">
+  
+      <!-- Question 1 -->
+      <div class="question">
+        <h3>1. Which property creates a CSS animation?</h3>
+        <label><input type="radio" name="q1" value="a"> @keyframes</label>
+        <label><input type="radio" name="q1" value="b"> animate</label>
+        <label><input type="radio" name="q1" value="c"> transition</label>
+        <label><input type="radio" name="q1" value="d"> transform</label>
+      </div>
+  
+      <!-- Question 2 -->
+      <div class="question">
+        <h3>2. What does will-change: transform; do?</h3>
+        <label><input type="radio" name="q2" value="a"> Optimizes animations by hinting at future changes</label>
+        <label><input type="radio" name="q2" value="b"> Forces 3D transform</label>
+        <label><input type="radio" name="q2" value="c"> Disables GPU rendering</label>
+        <label><input type="radio" name="q2" value="d"> Rotates element</label>
+      </div>
+  
+      <!-- Question 3 -->
+      <div class="question">
+        <h3>3. Which code creates a grid with 3 equal columns?</h3>
+        <label><input type="radio" name="q3" value="a"> grid-template-columns: repeat(3, 1fr);</label>
+        <label><input type="radio" name="q3" value="b"> grid-columns: 3;</label>
+        <label><input type="radio" name="q3" value="c"> grid: 3;</label>
+        <label><input type="radio" name="q3" value="d"> columns: 3fr;</label>
+      </div>
+  
+      <!-- Question 4 -->
+      <div class="question">
+        <h3>4. What is the purpose of clip-path?</h3>
+        <label><input type="radio" name="q4" value="a"> Clips element to custom shape</label>
+        <label><input type="radio" name="q4" value="b"> Adds shadow effect</label>
+        <label><input type="radio" name="q4" value="c"> Crops images</label>
+        <label><input type="radio" name="q4" value="d"> Hides overflow</label>
+      </div>
+  
+      <!-- Question 5 -->
+      <div class="question">
+        <h3>5. Which pseudo-element inserts content AFTER an element?</h3>
+        <label><input type="radio" name="q5" value="a"> ::before</label>
+        <label><input type="radio" name="q5" value="b"> ::after</label>
+        <label><input type="radio" name="q5" value="c"> ::placeholder</label>
+        <label><input type="radio" name="q5" value="d"> ::selection</label>
+      </div>
+  
+      <!-- Question 6 -->
+      <div class="question">
+        <h3>6. What does backface-visibility: hidden; do?</h3>
+        <label><input type="radio" name="q6" value="a"> Hides reverse side of rotated element</label>
+        <label><input type="radio" name="q6" value="b"> Disables hover effects</label>
+        <label><input type="radio" name="q6" value="c"> Makes element invisible</label>
+        <label><input type="radio" name="q6" value="d"> Flips element horizontally</label>
+      </div>
+  
+      <!-- Question 7 -->
+      <div class="question">
+        <h3>7. Which code defines CSS custom property (variable)?</h3>
+        <label><input type="radio" name="q7" value="a"> :root { --primary-color: red; }</label>
+        <label><input type="radio" name="q7" value="b"> var primary-color = red;</label>
+        <label><input type="radio" name="q7" value="c"> variable: primary-color red;</label>
+        <label><input type="radio" name="q7" value="d"> @property --primary-color { red }</label>
+      </div>
+  
+      <!-- Question 8 -->
+      <div class="question">
+        <h3>8. What is mix-blend-mode property used for?</h3>
+        <label><input type="radio" name="q8" value="a"> Blending element with background</label>
+        <label><input type="radio" name="q8" value="b"> Adding gradients</label>
+        <label><input type="radio" name="q8" value="c"> Animating colors</label>
+        <label><input type="radio" name="q8" value="d"> Creating shadows</label>
+      </div>
+  
+      <!-- Question 9 -->
+      <div class="question">
+        <h3>9. Which selector targets third child element?</h3>
+        <label><input type="radio" name="q9" value="a"> :nth-child(3)</label>
+        <label><input type="radio" name="q9" value="b"> :child(3)</label>
+        <label><input type="radio" name="q9" value="c"> :nth-of-type(3)</label>
+        <label><input type="radio" name="q9" value="d"> :third-child</label>
+      </div>
+  
+      <!-- Question 10 -->
+      <div class="question">
+        <h3>10. What does @supports (display: grid) { ... } do?</h3>
+        <label><input type="radio" name="q10" value="a"> Checks browser support for CSS Grid</label>
+        <label><input type="radio" name="q10" value="b"> Forces Grid layout</label>
+        <label><input type="radio" name="q10" value="c"> Disables Grid for old browsers</label>
+        <label><input type="radio" name="q10" value="d"> Tests JavaScript compatibility</label>
+      </div>
+  
+      <button type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+
+    <script src="main-script.js"></script>
+  <script>
+function submitQuiz() {
+      const answers = {
+        q1: 'a',  // @keyframes
+        q2: 'a',  // optimizes animations
+        q3: 'a',  // grid-template-columns
+        q4: 'a',  // clip-path
+        q5: 'b',  // ::after
+        q6: 'a',  // backface visibility
+        q7: 'a',  // :root custom property
+        q8: 'a',  // blend mode
+        q9: 'a',  // nth-child(3)
+        q10: 'a'  // feature query
+      };
+
+      let score = 0;
+
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

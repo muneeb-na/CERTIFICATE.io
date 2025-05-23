@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCQ Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+    <h1>Advanced JavaScript Test</h1>
+    <form id="quizForm">
+  
+      <!-- Question 1 -->
+      <div class="question">
+        <h3>1. Which of these creates a closure?</h3>
+        <label><input type="radio" name="q1" value="a"> function outer() { let x = 1; return function inner() { console.log(x) } }</label>
+        <label><input type="radio" name="q1" value="b"> function outer() { return { x: 1 } }</label>
+        <label><input type="radio" name="q1" value="c"> const x = 1; function inner() { console.log(x) }</label>
+        <label><input type="radio" name="q1" value="d"> console.log(x); let x = 1;</label>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question">
+        <h3>2. What will be logged? console.log(a); var a = 5; let b = 10;</h3>
+        <label><input type="radio" name="q2" value="a"> undefined</label>
+        <label><input type="radio" name="q2" value="b"> 5</label>
+        <label><input type="radio" name="q2" value="c"> ReferenceError</label>
+        <label><input type="radio" name="q2" value="d"> null</label>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question">
+        <h3>3. Which code creates a resolved promise?</h3>
+        <label><input type="radio" name="q3" value="a"> Promise.resolve(42)</label>
+        <label><input type="radio" name="q3" value="b"> new Promise(42)</label>
+        <label><input type="radio" name="q3" value="c"> Promise( (resolve) => resolve(42) )</label>
+        <label><input type="radio" name="q3" value="d"> async function f() { return 42 }</label>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question">
+        <h3>4. What's the correct async/await syntax?</h3>
+        <label><input type="radio" name="q4" value="a"> async function fetchData() { await fetch() }</label>
+        <label><input type="radio" name="q4" value="b"> function async fetchData() { wait fetch() }</label>
+        <label><input type="radio" name="q4" value="c"> async fetchData() { await fetch() }</label>
+        <label><input type="radio" name="q4" value="d"> function fetchData() { async await fetch() }</label>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question">
+        <h3>5. What does 'this' refer to here? const obj = { log: () => console.log(this) }</h3>
+        <label><input type="radio" name="q5" value="a"> Window object</label>
+        <label><input type="radio" name="q5" value="b"> obj instance</label>
+        <label><input type="radio" name="q5" value="c"> undefined</label>
+        <label><input type="radio" name="q5" value="d"> null</label>
+      </div>
+
+      <!-- Question 6 -->
+      <div class="question">
+        <h3>6. Execution order: console.log(1); setTimeout(() => console.log(2)); Promise.resolve().then(() => console.log(3)); console.log(4);</h3>
+        <label><input type="radio" name="q6" value="a"> 1,4,3,2</label>
+        <label><input type="radio" name="q6" value="b"> 1,4,2,3</label>
+        <label><input type="radio" name="q6" value="c"> 1,2,4,3</label>
+        <label><input type="radio" name="q6" value="d"> 4,1,3,2</label>
+      </div>
+
+      <!-- Question 7 -->
+      <div class="question">
+        <h3>7. Which is a valid ES6 module export?</h3>
+        <label><input type="radio" name="q7" value="a"> export const PI = 3.14;</label>
+        <label><input type="radio" name="q7" value="b"> exports.PI = 3.14;</label>
+        <label><input type="radio" name="q7" value="c"> module.export = 3.14;</label>
+        <label><input type="radio" name="q7" value="d"> export = 3.14;</label>
+      </div>
+
+      <!-- Question 8 -->
+      <div class="question">
+        <h3>8. What's the output? function tag(str, ...vals) { return str[1] } console.log(tag`${10}${20}`);</h3>
+        <label><input type="radio" name="q8" value="a"> 20</label>
+        <label><input type="radio" name="q8" value="b"> 10</label>
+        <label><input type="radio" name="q8" value="c"> "${20}"</label>
+        <label><input type="radio" name="q8" value="d"> undefined</label>
+      </div>
+
+      <!-- Question 9 -->
+      <div class="question">
+        <h3>9. What happens? let a = { count: 1 }; let b = a; b.count = 2;</h3>
+        <label><input type="radio" name="q9" value="a"> a.count becomes 2</label>
+        <label><input type="radio" name="q9" value="b"> b gets new object</label>
+        <label><input type="radio" name="q9" value="c"> a remains unchanged</label>
+        <label><input type="radio" name="q9" value="d"> TypeError occurs</label>
+      </div>
+
+      <!-- Question 10 -->
+      <div class="question">
+        <h3>10. What's the first phase in event propagation?</h3>
+        <label><input type="radio" name="q10" value="a"> Capturing phase</label>
+        <label><input type="radio" name="q10" value="b"> Bubbling phase</label>
+        <label><input type="radio" name="q10" value="c"> Target phase</label>
+        <label><input type="radio" name="q10" value="d"> Initial phase</label>
+      </div>
+
+      <button type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+    <script src="main-script.js"></script>
+  <script>
+function submitQuiz() {
+      const answers = {
+        q1: 'a',  // Closure
+        q2: 'a',  // Hoisting
+        q3: 'a',  // Promise.resolve
+        q4: 'a',  // async/await syntax
+        q5: 'a',  // Arrow function this
+        q6: 'a',  // Event loop order
+        q7: 'a',  // ES6 export
+        q8: 'a',  // Tagged template
+        q9: 'a',  // Object reference
+        q10: 'a'  // Event propagation
+      };
+
+      let score = 0;
+
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

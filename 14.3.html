@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Canva Expert Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Canva Expert Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What's the maximum number of Brand Kits allowed in Canva Pro?</h3>
+        <label><input type="radio" name="q1" value="a"> 1</label>
+        <label><input type="radio" name="q1" value="b"> 5</label>
+        <label><input type="radio" name="q1" value="c"> Unlimited</label>
+        <label><input type="radio" name="q1" value="d"> 3</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. What does the Magic Resize feature primarily help with?</h3>
+        <label><input type="radio" name="q2" value="a"> Automatic color correction</label>
+        <label><input type="radio" name="q2" value="b"> Adapting designs to multiple formats</label>
+        <label><input type="radio" name="q2" value="c"> AI-powered image enhancement</label>
+        <label><input type="radio" name="q2" value="d"> Font pairing suggestions</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. Which keyboard shortcut aligns selected elements to the center?</h3>
+        <label><input type="radio" name="q3" value="a"> Ctrl/Cmd + Shift + C</label>
+        <label><input type="radio" name="q3" value="b"> Ctrl/Cmd + E</label>
+        <label><input type="radio" name="q3" value="c"> Ctrl/Cmd + Shift + A</label>
+        <label><input type="radio" name="q3" value="d"> Alt/Option + C</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. How do you create transparent PNGs with Canva Pro?</h3>
+        <label><input type="radio" name="q4" value="a"> Use Remove Background tool</label>
+        <label><input type="radio" name="q4" value="b"> Set opacity to 0%</label>
+        <label><input type="radio" name="q4" value="c"> Download as PNG with transparency checked</label>
+        <label><input type="radio" name="q4" value="d"> Both a and c</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. What's the maximum animation duration for a single element?</h3>
+        <label><input type="radio" name="q5" value="a"> 5 seconds</label>
+        <label><input type="radio" name="q5" value="b"> 10 seconds</label>
+        <label><input type="radio" name="q5" value="c"> 20 seconds</label>
+        <label><input type="radio" name="q5" value="d"> Unlimited</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. How do you set up print bleed in Canva?</h3>
+        <label><input type="radio" name="q6" value="a"> Add 3mm margins manually</label>
+        <label><input type="radio" name="q6" value="b"> Use the Print Bleed template</label>
+        <label><input type="radio" name="q6" value="c"> Enable in File Settings</label>
+        <label><input type="radio" name="q6" value="d"> Canva handles it automatically</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. What's the purpose of the "Content Planner" feature?</h3>
+        <label><input type="radio" name="q7" value="a"> Schedule social media posts</label>
+        <label><input type="radio" name="q7" value="b"> Organize design projects</label>
+        <label><input type="radio" name="q7" value="c"> Plan blog content</label>
+        <label><input type="radio" name="q7" value="d"> Manage team workflows</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. How do you create a multi-page PDF with hyperlinks?</h3>
+        <label><input type="radio" name="q8" value="a"> Export as PDF Standard</label>
+        <label><input type="radio" name="q8" value="b"> Use PDF Print with links</label>
+        <label><input type="radio" name="q8" value="c"> Enable "Interactive PDF" option</label>
+        <label><input type="radio" name="q8" value="d"> Canva doesn't support this</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. What's the maximum team size for Canva for Teams?</h3>
+        <label><input type="radio" name="q9" value="a"> 50 members</label>
+        <label><input type="radio" name="q9" value="b"> 100 members</label>
+        <label><input type="radio" name="q9" value="c"> 500 members</label>
+        <label><input type="radio" name="q9" value="d"> No fixed limit</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. How do you access Canva's API integration features?</h3>
+        <label><input type="radio" name="q10" value="a"> Through Developer Dashboard</label>
+        <label><input type="radio" name="q10" value="b"> Via Apps Marketplace</label>
+        <label><input type="radio" name="q10" value="c"> Using Webhooks</label>
+        <label><input type="radio" name="q10" value="d"> All of the above</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['c', 'b', 'c', 'd', 'c', 'c', 'a', 'c', 'd', 'd'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

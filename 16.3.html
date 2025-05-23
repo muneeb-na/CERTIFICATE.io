@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Photoshop Expert Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Photoshop Expert Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What's the purpose of the "Calculations" command?</h3>
+        <label><input type="radio" name="q1" value="a"> Merge 3D layers</label>
+        <label><input type="radio" name="q1" value="b"> Create complex channel-based selections</label>
+        <label><input type="radio" name="q1" value="c"> Batch process images</label>
+        <label><input type="radio" name="q1" value="d"> Generate color profiles</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. How would you create a frequency separation setup?</h3>
+        <label><input type="radio" name="q2" value="a"> High Pass filter + Gaussian Blur</label>
+        <label><input type="radio" name="q2" value="b"> Apply Image + Surface Blur</label>
+        <label><input type="radio" name="q2" value="c"> Two layers with "Color" and "Luminosity" blending</label>
+        <label><input type="radio" name="q2" value="d"> Stack Mode: Median</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. What's the advantage of LAB color mode for sharpening?</h3>
+        <label><input type="radio" name="q3" value="a"> Avoid color artifacts</label>
+        <label><input type="radio" name="q3" value="b"> Preserve layer styles</label>
+        <label><input type="radio" name="q3" value="c"> Better CMYK conversion</label>
+        <label><input type="radio" name="q3" value="d"> Smaller file sizes</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. How to create a non-destructive dodge & burn layer?</h3>
+        <label><input type="radio" name="q4" value="a"> 50% gray layer set to Overlay</label>
+        <label><input type="radio" name="q4" value="b"> Adjustment layer curves</label>
+        <label><input type="radio" name="q4" value="c"> Clone Stamp tool</label>
+        <label><input type="radio" name="q4" value="d"> Gradient Map</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. What's the purpose of "Smart Sharpen" Advanced mode?</h3>
+        <label><input type="radio" name="q5" value="a"> Remove lens distortion</label>
+        <label><input type="radio" name="q5" value="b"> Separate shadow/highlight sharpening</label>
+        <label><input type="radio" name="q5" value="c"> Batch apply presets</label>
+        <label><input type="radio" name="q5" value="d"> Create displacement maps</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. How would you create a print-ready PDF/X-4 file?</h3>
+        <label><input type="radio" name="q6" value="a"> Save As > PDF</label>
+        <label><input type="radio" name="q6" value="b"> Export > PDF/X-4 preset</label>
+        <label><input type="radio" name="q6" value="c"> Use Package feature</label>
+        <label><input type="radio" name="q6" value="d"> Convert to CMYK first</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. What's the purpose of "Snapshot" in the History panel?</h3>
+        <label><input type="radio" name="q7" value="a"> Save file versions</label>
+        <label><input type="radio" name="q7" value="b"> Create restore points</label>
+        <label><input type="radio" name="q7" value="c"> Non-linear editing</label>
+        <label><input type="radio" name="q7" value="d"> All of the above</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. How to create a custom halftone pattern for screen printing?</h3>
+        <label><input type="radio" name="q8" value="a"> Color Halftone filter</label>
+        <label><input type="radio" name="q8" value="b"> Bitmap mode conversion</label>
+        <label><input type="radio" name="q8" value="c"> Channel calculations</label>
+        <label><input type="radio" name="q8" value="d"> All of the above</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. What's the best approach for 32-bit HDR compositing?</h3>
+        <label><input type="radio" name="q9" value="a"> Use adjustment layers</label>
+        <label><input type="radio" name="q9" value="b"> Merge to HDR Pro</label>
+        <label><input type="radio" name="q9" value="c"> Work in 16-bit first</label>
+        <label><input type="radio" name="q9" value="d"> Enable "Use Legacy"</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. How to optimize performance for large PSD files?</h3>
+        <label><input type="radio" name="q10" value="a"> Increase cache levels</label>
+        <label><input type="radio" name="q10" value="b"> Use Smart Objects</label>
+        <label><input type="radio" name="q10" value="c"> Purge history states</label>
+        <label><input type="radio" name="q10" value="d"> All of the above</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['b', 'b', 'a', 'a', 'b', 'b', 'd', 'd', 'b', 'd'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

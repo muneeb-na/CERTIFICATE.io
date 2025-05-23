@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Dashboard - CERTIFICATE.io</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --secondary: #0099ff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-light: rgba(255, 255, 255, 0.9);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin: -1rem -1rem 2rem -1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .security-badge {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+        }
+
+        h1, h2 {
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .link-box {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        #testLink {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .copy-btn, .download-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover, .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 255, 157, 0.3);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.02);
+            font-weight: 600;
+        }
+
+        .score-cell {
+            font-weight: 700;
+        }
+
+        .correct-score {
+            color: var(--primary);
+        }
+
+        .total-questions {
+            color: var(--secondary);
+        }
+
+        .percentage-cell {
+            font-weight: 600;
+            background: rgba(0, 255, 157, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            display: inline-block;
+        }
+
+        .top-scorer {
+            background: rgba(0, 255, 157, 0.05);
+        }
+
+        .detail-toggle {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .detail-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ROWA Watermark */
+        .rowa-watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 1.5rem;
+            font-weight: 700;
+            transform: rotate(-15deg);
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .link-box {
+                flex-direction: column;
+            }
+
+            #testLink {
+                width: 100%;
+            }
+
+            .copy-btn, .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">CERTIFICATE.io</div>
+        <div class="security-badge">by ROWA</div>
+    </header>
+
+    <div class="container">
+        <h1>Test Results Dashboard</h1>
+        <div class="link-box">
+            <input type="text" id="testLink" readonly>
+            <button class="copy-btn" onclick="copyLink()">📋 Copy Link</button>
+            <button class="download-btn" onclick="downloadResults()">📷 Download</button>
+        </div>
+        
+        <div id="results">
+            <!-- Results will be loaded here -->
+        </div>
+    </div>
+    <script>
+         const params = new URLSearchParams(window.location.search);
+        const testId = params.get('testId');
+        const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxjKwKG_c0uv_0hF3HbAbVTDLYvevtEK4KMh3oOD_UwvwZqd2oy_2QePIqeyj3fg3Ri/exec';
+
+        // Initialize dashboard
+        document.getElementById('testLink').value = `${window.location.origin}/student.html?testId=${testId}`;
+
+        async function loadResults() {
+            try {
+                const response = await fetch(`${APP_SCRIPT_URL}?action=getResults&testId=${testId}`);
+                const { testData, responseData } = await response.json();
+                
+                const students = processData(testData, responseData);
+                displayResults(students);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('results').innerHTML = `
+                    <div class="error-message">
+                        Error loading results: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+function processData(testData, responseData) {
+  const students = {};
+  const questions = testData.map(q => ({
+    question: q[1].trim().toLowerCase(), // Normalize question text
+    correct: q[6].toString().trim() // Ensure correct answer is string
+  }));
+
+  responseData.forEach(row => {
+    const [_, studentName, questionText, answer] = row;
+    const normalizedQuestion = questionText.trim().toLowerCase();
+    const normalizedAnswer = answer.toString().trim();
+
+    const questionObj = questions.find(q => 
+      q.question === normalizedQuestion
+    );
+
+    if (!students[studentName]) {
+      students[studentName] = {
+        name: studentName,
+        score: 0,
+        total: questions.length,
+        details: []
+      };
+    }
+
+    if (questionObj?.correct === normalizedAnswer) {
+      students[studentName].score++;
+    }
+
+    students[studentName].details.push({
+      question: questionText,
+      studentAnswer: answer,
+      correct: questionObj?.correct || 'N/A'
+    });
+  });
+
+  return students;
+}
+
+        
+        function displayResults(students) {
+            const studentArray = Object.values(students);
+            const maxScore = Math.max(...studentArray.map(s => s.score));
+            
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Correct Answers</th>
+                            <th>Total Questions</th>
+                            <th>Percentage</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+            studentArray.sort((a, b) => b.score - a.score).forEach(student => {
+                const percentage = ((student.score / student.total) * 100).toFixed(1);
+                
+                html += `
+                    <tr ${student.score === maxScore ? 'class="top-scorer"' : ''}>
+                        <td>${student.name}</td>
+                        <td class="score-cell correct-score">${student.score}</td>
+                        <td class="score-cell total-questions">${student.total}</td>
+                        <td class="percentage-cell">${percentage}%</td>
+                        <td>
+                            <button class="detail-toggle" 
+                                    onclick="toggleDetails('${student.name}')">
+                                📖 View Answers
+                            </button>
+                        </td>
+                    </tr>
+                    <tr id="${student.name}-details" style="display: none;">
+                        <td colspan="5">
+                            <div class="answer-details">
+                                ${student.details.map((detail, index) => `
+                                    <div class="question-result">
+                                        <strong>Question ${index + 1}:</strong> ${detail.question}<br>
+                                        <span class="student-answer">Student's Answer: ${detail.studentAnswer}</span>
+                                        <span class="correct-answer">Correct Answer: ${detail.correct}</span>
+                                        ${detail.studentAnswer === detail.correct 
+                                            ? '<span class="result-indicator correct">✓ Correct</span>'
+                                            : '<span class="result-indicator incorrect">✗ Incorrect</span>'}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </td>
+                    </tr>`;
+            });
+
+            html += `</tbody></table>`;
+            document.getElementById('results').innerHTML = html;
+        }
+
+        function toggleDetails(studentName) {
+            const detailsRow = document.getElementById(`${studentName}-details`);
+            const button = document.querySelector(`button[onclick="toggleDetails('${student.name}')]`);
+            
+            detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
+            button.textContent = detailsRow.style.display === 'none' ? '📖 View Answers' : '📕 Close Answers';
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(document.getElementById('testLink').value);
+            alert('Test link copied to clipboard!');
+        }
+
+        async function downloadResults() {
+            const element = document.getElementById('results');
+            const canvas = await html2canvas(element, {
+                backgroundColor: '#2d2d2d',
+                scale: 2
+            });
+            
+            const link = document.createElement('a');
+            link.download = `test-results-${testId}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        // Refresh every 30 seconds
+        setInterval(loadResults, 2000);
+        loadResults();
+    </script>
+</body>
+</html>

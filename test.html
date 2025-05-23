@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Instructions - CERTIFICATE.io</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00ff9d;
+      --secondary: #0099ff;
+      --dark-bg: #0a0a0a;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --text-light: rgba(255, 255, 255, 0.9);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--dark-bg);
+      color: var(--text-light);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .rowa-brand {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 0.25rem;
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    .rules-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .rules-list li {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 3px solid var(--primary);
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .rules-list li::before {
+      content: "•";
+      color: var(--primary);
+      margin-right: 0.75rem;
+    }
+
+    .controls {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    #countdown {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .start-btn {
+      padding: 0.75rem 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.5rem;
+      cursor: not-allowed;
+      transition: var(--transition);
+    }
+
+    .start-btn.active {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: #000;
+      border-color: transparent;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      
+      h1 {
+        font-size: 1.75rem;
+      }
+      
+      .controls {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">CERTIFICATE.io</div>
+    <div class="rowa-brand">by ROWA</div>
+  </header>
+
+  <div class="container">
+    <h1>Test Instructions</h1>
+    <ul class="rules-list">
+      <li>Do not switch tabs or windows during the test</li>
+      <li>do not try to copy text from test page</li>
+      <li>Ensure stable internet connection</li>
+      <li>Read questions carefully before answering</li>
+      <li>Technical issues should be report</li>
+    </ul>
+
+    <div class="controls">
+      <button class="start-btn" id="startBtn" disabled>Start Test</button>
+      <div id="countdown">Please wait 6 seconds</div>
+    </div>
+  </div>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const countdown = document.getElementById('countdown');
+
+    let timeLeft = 7;
+    const interval = setInterval(() => {
+      timeLeft--;
+      countdown.textContent = `delay: ${timeLeft}s`;
+      
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        startBtn.disabled = false;
+        startBtn.classList.add('active');
+        countdown.textContent = "Ready to start";
+        countdown.style.color = "#00ff9d";
+      }
+    }, 1000);
+
+    startBtn.addEventListener('click', () => {
+      window.location.href = 'loding.html';
+    });
+  </script>
+</body>
+</html>

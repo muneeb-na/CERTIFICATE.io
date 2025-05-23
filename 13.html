@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UX/UI Design Beginner Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>UX/UI Design Beginner Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What is the primary focus of UX Design?</h3>
+        <label><input type="radio" name="q1" value="a"> Visual aesthetics</label>
+        <label><input type="radio" name="q1" value="b"> User experience</label>
+        <label><input type="radio" name="q1" value="c"> Coding functionality</label>
+        <label><input type="radio" name="q1" value="d"> Content creation</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. What are wireframes primarily used for?</h3>
+        <label><input type="radio" name="q2" value="a"> Final visual design</label>
+        <label><input type="radio" name="q2" value="b"> Basic layout structure</label>
+        <label><input type="radio" name="q2" value="c"> Color scheme selection</label>
+        <label><input type="radio" name="q2" value="d"> Animation design</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. Which colors are considered complementary?</h3>
+        <label><input type="radio" name="q3" value="a"> Red and Blue</label>
+        <label><input type="radio" name="q3" value="b"> Yellow and Green</label>
+        <label><input type="radio" name="q3" value="c"> Orange and Purple</label>
+        <label><input type="radio" name="q3" value="d"> Red and Green</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. What does "above the fold" refer to in web design?</h3>
+        <label><input type="radio" name="q4" value="a"> Hidden navigation menu</label>
+        <label><input type="radio" name="q4" value="b"> Content visible without scrolling</label>
+        <label><input type="radio" name="q4" value="c"> Footer section</label>
+        <label><input type="radio" name="q4" value="d"> Loading animation</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. Which principle states users prefer familiar interfaces?</h3>
+        <label><input type="radio" name="q5" value="a"> Fitts's Law</label>
+        <label><input type="radio" name="q5" value="b"> Jakob's Law</label>
+        <label><input type="radio" name="q5" value="c"> Hick's Law</label>
+        <label><input type="radio" name="q5" value="d"> Gestalt Principles</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. What is the main difference between UI and UX?</h3>
+        <label><input type="radio" name="q6" value="a"> UI is about visuals, UX about overall experience</label>
+        <label><input type="radio" name="q6" value="b"> UI is technical, UX is creative</label>
+        <label><input type="radio" name="q6" value="c"> They are the same thing</label>
+        <label><input type="radio" name="q6" value="d"> UI focuses on content, UX on colors</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. What does WCAG stand for in accessibility?</h3>
+        <label><input type="radio" name="q7" value="a"> Web Content Accessibility Guidelines</label>
+        <label><input type="radio" name="q7" value="b"> Website Color And Graphics</label>
+        <label><input type="radio" name="q7" value="c"> Wireless Content Access Group</label>
+        <label><input type="radio" name="q7" value="d"> Web Component Architecture Guide</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. What is the purpose of a user persona?</h3>
+        <label><input type="radio" name="q8" value="a"> Company brand identity</label>
+        <label><input type="radio" name="q8" value="b"> Technical documentation</label>
+        <label><input type="radio" name="q8" value="c"> Fictional user representation</label>
+        <label><input type="radio" name="q8" value="d"> Color palette selection</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. What is Information Architecture primarily concerned with?</h3>
+        <label><input type="radio" name="q9" value="a"> Visual hierarchy</label>
+        <label><input type="radio" name="q9" value="b"> Content organization</label>
+        <label><input type="radio" name="q9" value="c"> Animation timing</label>
+        <label><input type="radio" name="q9" value="d"> Font pairing</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. What does "mobile-first design" emphasize?</h3>
+        <label><input type="radio" name="q10" value="a"> Designing for mobile screens first</label>
+        <label><input type="radio" name="q10" value="b"> Mobile app development</label>
+        <label><input type="radio" name="q10" value="c"> Responsive images</label>
+        <label><input type="radio" name="q10" value="d"> Touchscreen gestures</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['b', 'b', 'd', 'b', 'b', 'a', 'a', 'c', 'b', 'a'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

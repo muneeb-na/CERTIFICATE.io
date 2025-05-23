@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Problem Solving Test</title>
+  <link href="https://unpkg.com/massive/css/massive.min.css" rel="stylesheet" />
+  <style>
+    /* All original CSS remains unchanged */
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 60px;
+      background-color: #1e1e1e;
+      color: white;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .captcha {
+      margin: 1rem 0;
+      background: #1c1c1c;
+      padding: 1rem;
+      border: 1px solid #444;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .captcha input[type=range] {
+      width: 100%;
+    }
+
+    .btn {
+      background-color: #6200ea;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      color: white;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn:disabled {
+      background-color: #333;
+      cursor: not-allowed;
+    }
+
+    .score-box {
+      margin-top: 2rem;
+      background: #1e1e1e;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    #timer {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      color: #6200ea;
+      text-align: center;
+      padding: 0.5rem;
+      background: #1e1e1e;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div id="timer">Time Remaining: 10:00</div>
+  <div class="container">
+    <h1>🧠 Advanced Problem Solving Test</h1>
+    <form id="testForm">
+      <div id="questions"></div>
+
+      <div class="captcha">
+        <label for="captcha">Slide to verify you're human 👇</label>
+        <input type="range" id="captcha" min="0" max="100" step="1" value="0" />
+        <p id="captchaStatus">Locked ❌</p>
+      </div>
+
+      <button class="btn" type="submit" disabled id="submitBtn">Submit Answers</button>
+    </form>
+
+    <div class="score-box" id="resultBox" style="display:none;">
+      <h2>Your Score: <span id="scoreDisplay"></span>/10</h2>
+    </div>
+  </div>
+  
+  <div id="startupModal" style="position: fixed; inset: 0; background-color: rgba(0,0,0,0.85); color: white; display: flex; justify-content: center; align-items: center; z-index: 9999;">
+    <div style="max-width: 90%; width: 400px; background-color: #1e1e1e; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 0 15px #000;">
+      <h2>📢 Notice</h2>
+      <p style="margin-top: 1rem; font-size: 1rem;">
+        Your answers will be reviewed by <strong>GOOGLE GEMINI</strong>, so write short answers. <br>
+        Do not start writing a book.
+      </p>
+      <button id="dismissModal" class="btn" style="margin-top: 1.5rem;">Got it</button>
+    </div>
+  </div>
+
+  <div id="loadingModal" style="position: fixed; inset: 0; background-color: rgba(0,0,0,0.8); color: white; display: none; justify-content: center; align-items: center; z-index: 9999;">
+    <div style="text-align: center;">
+      <h2>⏳ Please wait...</h2>
+      <p>We are waiting for AI reply...</p>
+    </div>
+  </div>
+
+  <div id="errorModal" style="position: fixed; inset: 0; background-color: rgba(0,0,0,0.85); color: white; display: none; justify-content: center; align-items: center; z-index: 9999;">
+    <div style="max-width: 90%; width: 400px; background-color: #2a2a2a; padding: 2rem; border-radius: 12px; text-align: center;">
+      <h2>❌ Something went wrong</h2>
+      <p>Please submit a complaint or contact the developer.</p>
+      <button class="btn" onclick="document.getElementById('errorModal').style.display='none'">Close</button>
+    </div>
+  </div>
+<script src="main-script.js"></script>
+<script>
+  // Updated questions array with harder problems
+  const questions = [
+    "Using a 7-liter and 11-liter jug, how do you measure exactly 6 liters?",
+    "What's the next number in the sequence: 1, 2, 6, 24, 120, __?",
+    "A house has all windows facing south. A bear walks by. What color is it?",
+    "If 3 cats catch 3 mice in 3 minutes, how many cats needed to catch 100 mice in 100 minutes?",
+    "At what exact time after 12:00 do the clock hands first overlap? (HH:MM:SS)",
+    "In a vacuum, which falls faster: 1kg iron or 1kg cotton?",
+    "Make 24 using 6, 6, 8, 8 with any mathematical operations",
+    "12 balls: 1 heavier. Find it in 3 weighings. Explain your method.",
+    "How many rectangles exist on a chessboard?",
+    "Calculate the angle between clock hands at 4:10"
+  ];
+
+  const API_KEY = "AIzaSyDQtyrQfpTgnlJ7lkMTqpXbrh8ak0AjjyI";
+  const MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + API_KEY;
+
+  // DOM elements
+  const form = document.getElementById("testForm");
+  const questionsDiv = document.getElementById("questions");
+  const captchaSlider = document.getElementById("captcha");
+  const captchaStatus = document.getElementById("captchaStatus");
+  const submitBtn = document.getElementById("submitBtn");
+  const resultBox = document.getElementById("resultBox");
+  const scoreDisplay = document.getElementById("scoreDisplay");
+
+  // Initialize questions
+  questions.forEach((q, i) => {
+    questionsDiv.innerHTML += `
+      <label>Q${i+1}. ${q}</label>
+      <textarea name="answer${i}" required></textarea>
+    `;
+  });
+
+  // CAPTCHA verification
+  captchaSlider.addEventListener('input', () => {
+    if (captchaSlider.value > 90) {
+      captchaStatus.textContent = "Verified ✅";
+      submitBtn.disabled = false;
+    } else {
+      captchaStatus.textContent = "Locked ❌";
+      submitBtn.disabled = true;
+    }
+  });
+
+  // Modal handling
+  document.getElementById("dismissModal").addEventListener("click", () => {
+    document.getElementById("startupModal").style.display = "none";
+  });
+
+  // Timer functionality
+  let timeLeft = 600; // 10 minutes
+  let timerInterval = null;
+
+  function startTimer() {
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      updateTimerDisplay();
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        autoSubmitForm();
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    document.getElementById('timer').textContent = 
+      `Time Remaining: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }
+
+  function autoSubmitForm() {
+    submitBtn.disabled = false;
+    form.submit();
+  }
+
+  // Form submission
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    clearInterval(timerInterval);
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+
+    const formData = new FormData(form);
+    const userAnswers = questions.map((q, i) => 
+      `Q${i+1}: ${q}\nA${i+1}: ${formData.get('answer'+i)}`
+    ).join('\n\n');
+
+    const prompt = `
+You are an expert evaluator. Score this problem-solving test (0-10) based on:
+1. Correctness
+2. Logical reasoning
+3. Creative approach
+Respond ONLY with the final score as a number (e.g., 7). If scoring impossible, explain why.
+
+${userAnswers}
+    `.trim();
+
+    document.getElementById("loadingModal").style.display = "flex";
+
+    try {
+      const response = await fetch(MODEL_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }]
+        })
+      });
+
+      const data = await response.json();
+      const aiReply = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "No response";
+      const score = parseInt(aiReply);
+
+      document.getElementById("loadingModal").style.display = "none";
+
+      if (!isNaN(score)) {
+        localStorage.setItem("testScore", score);
+        window.location.href = "result.html";
+      } else {
+        localStorage.setItem("lastScore", "AI response: " + aiReply);
+        scoreDisplay.textContent = "Evaluation: " + aiReply;
+        resultBox.style.display = "block";
+      }
+    } catch (err) {
+      console.error(err);
+      document.getElementById("loadingModal").style.display = "none";
+      document.getElementById("errorModal").style.display = "flex";
+    }
+
+    submitBtn.textContent = "Submit Answers";
+    submitBtn.disabled = false;
+  });
+
+  // Start timer when modal dismissed
+  document.getElementById("dismissModal").addEventListener("click", startTimer);
+</script>
+</body>
+</html>

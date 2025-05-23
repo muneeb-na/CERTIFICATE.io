@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Canva Beginner Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Canva Beginner Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What is the primary purpose of Canva?</h3>
+        <label><input type="radio" name="q1" value="a"> Video editing</label>
+        <label><input type="radio" name="q1" value="b"> Graphic design</label>
+        <label><input type="radio" name="q1" value="c"> Spreadsheet creation</label>
+        <label><input type="radio" name="q1" value="d"> Programming</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. Where do you find pre-made design templates in Canva?</h3>
+        <label><input type="radio" name="q2" value="a"> The "Uploads" tab</label>
+        <label><input type="radio" name="q2" value="b"> The "Templates" tab</label>
+        <label><input type="radio" name="q2" value="c"> The "Downloads" section</label>
+        <label><input type="radio" name="q2" value="d"> The "Settings" menu</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. How do you start a new design in Canva?</h3>
+        <label><input type="radio" name="q3" value="a"> Click the "+ Create a design" button</label>
+        <label><input type="radio" name="q3" value="b"> Press Ctrl+N</label>
+        <label><input type="radio" name="q3" value="c"> Right-click on the canvas</label>
+        <label><input type="radio" name="q3" value="d"> All of the above</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. What does the "+" button do when selecting elements?</h3>
+        <label><input type="radio" name="q4" value="a"> Deletes elements</label>
+        <label><input type="radio" name="q4" value="b"> Adds elements to your design</label>
+        <label><input type="radio" name="q4" value="c"> Creates a new page</label>
+        <label><input type="radio" name="q4" value="d"> Zooms in</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. How do you change the background color of a design?</h3>
+        <label><input type="radio" name="q5" value="a"> Use the paint bucket tool</label>
+        <label><input type="radio" name="q5" value="b"> Right-click and select "Fill color"</label>
+        <label><input type="radio" name="q5" value="c"> Click the background and use color picker</label>
+        <label><input type="radio" name="q5" value="d"> All of the above</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. What does the "Resize" feature in Canva allow you to do?</h3>
+        <label><input type="radio" name="q6" value="a"> Change image resolution</label>
+        <label><input type="radio" name="q6" value="b"> Adjust design dimensions</label>
+        <label><input type="radio" name="q6" value="c"> Scale elements proportionally</label>
+        <label><input type="radio" name="q6" value="d"> All of the above</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. How do you add text to your Canva design?</h3>
+        <label><input type="radio" name="q7" value="a"> Click the "Text" tab</label>
+        <label><input type="radio" name="q7" value="b"> Press T on your keyboard</label>
+        <label><input type="radio" name="q7" value="c"> Drag a text box from the toolbar</label>
+        <label><input type="radio" name="q7" value="d"> All of the above</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. What does the "Pro" label mean on Canva elements?</h3>
+        <label><input type="radio" name="q8" value="a"> Professional quality</label>
+        <label><input type="radio" name="q8" value="b"> Requires Canva Pro subscription</label>
+        <label><input type="radio" name="q8" value="c"> Premium feature</label>
+        <label><input type="radio" name="q8" value="d"> All of the above</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. How do you download your Canva design?</h3>
+        <label><input type="radio" name="q9" value="a"> File > Save As</label>
+        <label><input type="radio" name="q9" value="b"> Share button > Download</label>
+        <label><input type="radio" name="q9" value="c"> Right-click > Export</label>
+        <label><input type="radio" name="q9" value="d"> All of the above</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. What file formats can you download from Canva?</h3>
+        <label><input type="radio" name="q10" value="a"> PNG</label>
+        <label><input type="radio" name="q10" value="b"> JPG</label>
+        <label><input type="radio" name="q10" value="c"> PDF</label>
+        <label><input type="radio" name="q10" value="d"> All of the above</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['b', 'b', 'a', 'b', 'c', 'b', 'd', 'd', 'b', 'd'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

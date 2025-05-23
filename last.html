@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Confirmation - CERTIFICATE.io</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --secondary: #0099ff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-light: rgba(255, 255, 255, 0.9);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        #header {
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-logo {
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .rowa-brand {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.5px;
+            margin-top: -3px;
+        }
+
+        /* Main Content */
+        .confirmation-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .id-container {
+            background: var(--card-bg);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        #certificateid {
+            font-size: 1.5rem;
+            color: var(--primary);
+            word-break: break-all;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 255, 157, 0.3);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(45deg, #00ff9d, #00cc82);
+        }
+
+        .email-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 2rem 0;
+            max-width: 600px;
+        }
+
+        .email-text a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .email-text a:hover {
+            opacity: 0.8;
+        }
+
+        .home-link {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            margin-top: 2rem;
+        }
+
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 255, 157, 0.3);
+        }
+
+        /* ROWA Watermark */
+        .rowa-watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 1.5rem;
+            font-weight: 700;
+            transform: rotate(-15deg);
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #certificateid {
+                font-size: 1.2rem;
+            }
+
+            .confirmation-card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="logo-group">
+            <span class="main-logo">CERTIFICATE.io</span>
+            <span class="rowa-brand">BY ROWA</span>
+        </div>
+    </header>
+
+    <main class="confirmation-card">
+        <h1>Certificate Issued</h1>
+        
+        <div class="id-container">
+            <p id="certificateid"></p>
+            <button class="copy-btn" onclick="copyID()">Copy Certificate ID</button>
+        </div>
+
+        <div class="email-text">
+            you will recive your certificate in 2 working days<br>
+            for any queries, please contact us at<br>
+            <a href="mailto:muneebn350@gmail.com">muneebn350@gmail.com</a>
+        </div>
+
+        <a href="index.html" class="home-link">Return to Home</a>
+    </main>
+
+    <script>
+        const certificateId = localStorage.getItem("certificateId");
+        const idElement = document.getElementById("certificateid");
+        
+        if (certificateId) {
+            idElement.textContent = certificateId.match(/.{1,4}/g).join('-');
+        } else {
+            idElement.textContent = "No certificate ID found - Complete a test first";
+            idElement.style.color = "#ff4646";
+        }
+
+        function copyID() {
+            if (certificateId) {
+                navigator.clipboard.writeText(certificateId)
+                    .then(() => {
+                        const btn = document.querySelector('.copy-btn');
+                        btn.classList.add('copied');
+                        btn.textContent = '✓ Copied!';
+                        setTimeout(() => {
+                            btn.classList.remove('copied');
+                            btn.textContent = 'Copy Certificate ID';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                    });
+            }
+        }
+    </script>
+</body>
+</html>

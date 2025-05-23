@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCQ Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+    <h1>Advanced HTML MCQs</h1>
+    <form id="quizForm">
+    
+      <!-- Question 1 -->
+      <div class="question">
+        <h3>1. Which HTML5 API allows offline web applications?</h3>
+        <label><input type="radio" name="q1" value="a"> Geolocation API</label>
+        <label><input type="radio" name="q1" value="b"> Web Storage API</label>
+        <label><input type="radio" name="q1" value="c"> Web Workers API</label>
+        <label><input type="radio" name="q1" value="d"> Canvas API</label>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question">
+        <h3>2. What is the purpose of the data-* attribute?</h3>
+        <label><input type="radio" name="q2" value="a"> Link external data</label>
+        <label><input type="radio" name="q2" value="b"> Store custom data private to the page</label>
+        <label><input type="radio" name="q2" value="c"> Validate forms</label>
+        <label><input type="radio" name="q2" value="d"> Define metadata</label>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question">
+        <h3>3. Which element is used to draw graphics via JavaScript?</h3>
+        <label><input type="radio" name="q3" value="a"> &lt;svg&gt;</label>
+        <label><input type="radio" name="q3" value="b"> &lt;canvas&gt;</label>
+        <label><input type="radio" name="q3" value="c"> &lt;img&gt;</label>
+        <label><input type="radio" name="q3" value="d"> &lt;plot&gt;</label>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question">
+        <h3>4. Which attribute enables responsive images with &lt;picture&gt;?</h3>
+        <label><input type="radio" name="q4" value="a"> srcset</label>
+        <label><input type="radio" name="q4" value="b"> media</label>
+        <label><input type="radio" name="q4" value="c"> sizes</label>
+        <label><input type="radio" name="q4" value="d"> All of the above</label>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question">
+        <h3>5. What does the sandbox attribute do in &lt;iframe&gt;?</h3>
+        <label><input type="radio" name="q5" value="a"> Restrict iframe content for security</label>
+        <label><input type="radio" name="q5" value="b"> Embed sandbox games</label>
+        <label><input type="radio" name="q5" value="c"> Enable scripts in iframe</label>
+        <label><input type="radio" name="q5" value="d"> Add borders</label>
+      </div>
+
+      <!-- Question 6 -->
+      <div class="question">
+        <h3>6. Which HTML5 element is used for progress bars?</h3>
+        <label><input type="radio" name="q6" value="a"> &lt;progress&gt;</label>
+        <label><input type="radio" name="q6" value="b"> &lt;meter&gt;</label>
+        <label><input type="radio" name="q6" value="c"> &lt;bar&gt;</label>
+        <label><input type="radio" name="q6" value="d"> &lt;status&gt;</label>
+      </div>
+
+      <!-- Question 7 -->
+      <div class="question">
+        <h3>7. Which role attribute value indicates a banner section?</h3>
+        <label><input type="radio" name="q7" value="a"> role="navigation"</label>
+        <label><input type="radio" name="q7" value="b"> role="banner"</label>
+        <label><input type="radio" name="q7" value="c"> role="header"</label>
+        <label><input type="radio" name="q7" value="d"> role="main"</label>
+      </div>
+
+      <!-- Question 8 -->
+      <div class="question">
+        <h3>8. Which tag is part of the Web Components specification?</h3>
+        <label><input type="radio" name="q8" value="a"> &lt;component&gt;</label>
+        <label><input type="radio" name="q8" value="b"> &lt;template&gt;</label>
+        <label><input type="radio" name="q8" value="c"> &lt;custom&gt;</label>
+        <label><input type="radio" name="q8" value="d"> &lt;web-part&gt;</label>
+      </div>
+
+      <!-- Question 9 -->
+      <div class="question">
+        <h3>9. Which method is NOT part of the HTML5 Canvas API?</h3>
+        <label><input type="radio" name="q9" value="a"> getContext()</label>
+        <label><input type="radio" name="q9" value="b"> fillRect()</label>
+        <label><input type="radio" name="q9" value="c"> drawImage()</label>
+        <label><input type="radio" name="q9" value="d"> addColorStop()</label>
+      </div>
+
+      <!-- Question 10 -->
+      <div class="question">
+        <h3>10. Which meta tag prevents cross-site scripting (XSS) attacks?</h3>
+        <label><input type="radio" name="q10" value="a"> &lt;meta http-equiv="Content-Security-Policy"&gt;</label>
+        <label><input type="radio" name="q10" value="b"> &lt;meta charset="UTF-8"&gt;</label>
+        <label><input type="radio" name="q10" value="c"> &lt;meta name="viewport"&gt;</label>
+        <label><input type="radio" name="q10" value="d"> &lt;meta http-equiv="X-Frame-Options"&gt;</label>
+      </div>
+
+      <button type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+    <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const answers = {
+        q1: 'b',  // Web Storage API
+        q2: 'b',  // Store custom data
+        q3: 'b',  // canvas
+        q4: 'd',  // All of the above
+        q5: 'a',  // Restrict content
+        q6: 'a',  // progress
+        q7: 'b',  // banner
+        q8: 'b',  // template
+        q9: 'd',  // addColorStop
+        q10: 'a'  // Content-Security-Policy
+      };
+
+      let score = 0;
+
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>

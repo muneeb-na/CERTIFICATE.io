@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Expert Software Development Test</title>
+  <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Expert Software Development Test</h1>
+    <form id="quizForm">
+      <div class="question" id="question1">
+        <h3>1. What does Cyclomatic Complexity primarily measure?</h3>
+        <label><input type="radio" name="q1" value="a"> Code execution speed</label>
+        <label><input type="radio" name="q1" value="b"> Number of independent code paths</label>
+        <label><input type="radio" name="q1" value="c"> Memory consumption</label>
+        <label><input type="radio" name="q1" value="d"> Code documentation quality</label>
+      </div>
+
+      <div class="question" id="question2">
+        <h3>2. What is the main advantage of Event Sourcing architecture?</h3>
+        <label><input type="radio" name="q2" value="a"> Reduced database costs</label>
+        <label><input type="radio" name="q2" value="b"> Atomic transaction support</label>
+        <label><input type="radio" name="q2" value="c"> Full audit trail of state changes</label>
+        <label><input type="radio" name="q2" value="d"> Simplified frontend development</label>
+      </div>
+
+      <div class="question" id="question3">
+        <h3>3. Which principle does Dependency Injection primarily implement?</h3>
+        <label><input type="radio" name="q3" value="a"> KISS (Keep It Simple Stupid)</label>
+        <label><input type="radio" name="q3" value="b"> DRY (Don't Repeat Yourself)</label>
+        <label><input type="radio" name="q3" value="c"> Inversion of Control</label>
+        <label><input type="radio" name="q3" value="d"> YAGNI (You Ain't Gonna Need It)</label>
+      </div>
+
+      <div class="question" id="question4">
+        <h3>4. What is the primary purpose of the Circuit Breaker pattern?</h3>
+        <label><input type="radio" name="q4" value="a"> Prevent cascading failures in distributed systems</label>
+        <label><input type="radio" name="q4" value="b"> Optimize database queries</label>
+        <label><input type="radio" name="q4" value="c"> Manage memory allocation</label>
+        <label><input type="radio" name="q4" value="d"> Encrypt network communications</label>
+      </div>
+
+      <div class="question" id="question5">
+        <h3>5. What does the CAP theorem state about distributed systems?</h3>
+        <label><input type="radio" name="q5" value="a"> Can achieve Consistency, Availability, and Partition Tolerance</label>
+        <label><input type="radio" name="q5" value="b"> Must choose between Consistency and Availability during partitions</label>
+        <label><input type="radio" name="q5" value="c"> Partition Tolerance is optional</label>
+        <label><input type="radio" name="q5" value="d"> Availability always takes priority</label>
+      </div>
+
+      <div class="question" id="question6">
+        <h3>6. Which technique helps prevent deadlocks in concurrent systems?</h3>
+        <label><input type="radio" name="q6" value="a"> Using synchronized blocks</label>
+        <label><input type="radio" name="q6" value="b"> Ordered resource acquisition</label>
+        <label><input type="radio" name="q6" value="c"> Increasing thread priority</label>
+        <label><input type="radio" name="q6" value="d"> Reducing memory allocation</label>
+      </div>
+
+      <div class="question" id="question7">
+        <h3>7. What is the primary benefit of Blue-Green Deployment?</h3>
+        <label><input type="radio" name="q7" value="a"> Reduced infrastructure costs</label>
+        <label><input type="radio" name="q7" value="b"> Zero-downtime releases</label>
+        <label><input type="radio" name="q7" value="c"> Improved code quality</label>
+        <label><input type="radio" name="q7" value="d"> Enhanced security</label>
+      </div>
+
+      <div class="question" id="question8">
+        <h3>8. What is the main use case for Kubernetes in software development?</h3>
+        <label><input type="radio" name="q8" value="a"> Code compilation</label>
+        <label><input type="radio" name="q8" value="b"> Container orchestration</label>
+        <label><input type="radio" name="q8" value="c"> Database normalization</label>
+        <label><input type="radio" name="q8" value="d"> API documentation</label>
+      </div>
+
+      <div class="question" id="question9">
+        <h3>9. What distinguishes the BASE model from ACID transactions?</h3>
+        <label><input type="radio" name="q9" value="a"> Focus on eventual consistency</label>
+        <label><input type="radio" name="q9" value="b"> Strong atomicity guarantees</label>
+        <label><input type="radio" name="q9" value="c"> Immediate durability</label>
+        <label><input type="radio" name="q9" value="d"> Strict isolation levels</label>
+      </div>
+
+      <div class="question" id="question10">
+        <h3>10. What is the primary security concern addressed by the OWASP Top 10?</h3>
+        <label><input type="radio" name="q10" value="a"> Hardware vulnerabilities</label>
+        <label><input type="radio" name="q10" value="b"> Web application security risks</label>
+        <label><input type="radio" name="q10" value="c"> Network latency issues</label>
+        <label><input type="radio" name="q10" value="d"> Code compilation errors</label>
+      </div>
+
+      <button id="submitBtn" type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+  </div>
+  <script src="main-script.js"></script>
+  <script>
+    function submitQuiz() {
+      const correctAnswers = ['b', 'c', 'c', 'a', 'b', 'b', 'b', 'b', 'a', 'b'];
+      let score = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === correctAnswers[i - 1]) {
+          score++;
+        }
+      }
+
+      localStorage.setItem("testScore", score);
+      window.location.href = "result.html";
+    }
+  </script>
+</body>
+</html>
